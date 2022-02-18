@@ -1,6 +1,7 @@
 import 'dart:io';
 
 //function hitung luas lingkaran dengan parameter jari jari
+//SOAL NOMOR 1
 void hitungLuasLingkaran(r) {
   //const phi
   final phi = 3.14;
@@ -16,13 +17,14 @@ void hitungLuasLingkaran(r) {
 }
 
 //function main atau function utama
-void main(List<String> args) {
+void main() {
   //inisialisasi 3 string untuk judul
   String kata1 = 'Hitung ';
   String kata2 = 'Luas ';
   String kata3 = 'Lingkaran ';
 
   //penggabungan 3 string menjadi 1 kalimat
+  //SOAL NOMOR 2
   print(kata1 + kata2 + kata3);
 
   //memanggil function hitung luas lingkaran dengan paramter bernilai 5
