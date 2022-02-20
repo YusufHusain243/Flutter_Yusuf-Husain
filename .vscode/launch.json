@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "Dart (bin\\dart_application_1.dart)",
+            "type": "dart",
+            "request": "launch",
+            "cwd": "6_Branching - Looping - Function\\praktikum\\dart_application_1",
+            "program": "bin\\dart_application_1.dart"
+        }
+    ]
+}
