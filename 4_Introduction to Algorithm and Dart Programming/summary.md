@@ -1,8 +1,9 @@
+# (4) Introduction to algorithm and dart programming<br>
 Nama : Yusuf Husain <br>
 Nim : 193020503032 <br>
 Email : yusufhusain243@gmail.com <br>
 Universitas : Universitas Palangka Raya
-# Resume Introduction to algorithm and dart programming
+## Resume Introduction to algorithm and dart programming
 
 1. poin pertama materi ini menjelaskan tentang pengertian dari bahasa pemrograman dart. dimana dart ini adalah bahasa pemrograman yang dirancang agar aplikasi berjalan dengan cepat, dart juga merupakan aplikasi yang berjalan disisi client(front end).
 
