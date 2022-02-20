@@ -3,7 +3,7 @@ Nama : Yusuf Husain <br>
 Nim : 193020503032 <br>
 Email : yusufhusain243@gmail.com <br>
 Universitas : Universitas Palangka Raya
-# Resume Basic Dart Programming
+## Resume Basic Dart Programming
 
 1. function
 pada materi ini dijelaskan beberapa contoh function yang ada di dalam dart. contohnya adalah anonymous function dan juga arrow function.anonymous function adalah function yang tidak memiliki nama, fungsi ini juga bersifat sebagai data dari sebuah variabel contoh <br>
