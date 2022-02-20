@@ -1,3 +1,4 @@
+(2) Basic Version and Branch Management(git)
 Nama : Yusuf Husain <br>
 Nim : 193020503032 <br>
 Email : yusufhusain243@gmail.com <br>
