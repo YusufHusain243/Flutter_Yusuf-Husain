@@ -28,21 +28,31 @@ untuk membuat branch caranya menuliskan commad git branch <nama_branch>. berikut
 - git merge: Berfungsi untuk meleburkan dua state dari dua branch. Dalam git merge, branch sumber akan dibuatkan sebuah commit baru khusus untuk menyatakan bahwa telah terjadi merging dengan branch lain.<br>
 
 - ### branch development
-- git add branch development
+- #### git add branch development
 ![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/membuat%20branch%20feature%20B.jpeg)
-- git commit branch development
-- git push branch development
-- git merge branch development ke branch main
+- #### git commit branch development
+![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/commit%20perubahan%20branch%20development.jpeg)
+- #### git push branch development
+![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/push%20perubahan%20branch%20development.jpeg)
+- #### git merge branch development ke branch main
+![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/merge%20development%20ke%20main.jpeg)
 - ### branch feature a
-- git add branch feature a
-- git commit branch feature a
-- git push branch feature a
-- git merge branch feature a ke branch development
+- #### git add branch feature a
+![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/add%20perubahan%20feature%20A.jpeg)
+- #### git commit branch feature a
+![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/commit%20perubahan%20feature%20A.jpeg)
+- #### git push branch feature a
+![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/push%20perubahan%20feature%20A.jpeg)
+- #### git merge branch feature a ke branch development
+![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/merge%20feature%20a%20ke%20development.jpeg)
 - ### branch feature b
-- git add branch feature b
-- git commit branch feature b
-- git push branch feature b
-- git merge branch feature b ke branch development
+- #### git commit branch feature b
+![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/commit%20perubahan%20feature%20B.jpeg)
+- #### git merge branch feature b ke branch development
+![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/merge%20feature%20b%20ke%20development.jpeg)
 
 4. implementasikan sebuah penanganan conflict di branch development ketika setelah merge dari branch featureA lalu merge dari branch featureB (conflict bisa terjadi jika kedua branch mengerjakan difile dan line code yang sama)
-5. merge menggunakan no fast forward
+ - pada project kali ini, conflict yang terjadi ketika pada branch development sudah di merge dengan branch feature A, sehingga pada bagian body terdapat sebuah baris code yang tertulis pada baris yang sama. sehingga, ketika branch b di merge ke branch development, terdapat sebuah conflict yang harus di repair terlebih dahulu, sebelum di merge. berikut adalah conflictnya.
+ ![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/conflict%20ketika%20merge%20feature%20B%20ke%20development.jpeg).
+ dan berikut adalah hasil dari repair conflict tersebut.
+![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/commit%20perbaikan%20conflict.jpeg)
