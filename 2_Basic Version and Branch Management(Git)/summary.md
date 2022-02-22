@@ -13,7 +13,7 @@ Hal yang paling menarik yang bisa saya dapatkan dari materi ini adalah tentang b
 ## Task
 1. membuat repository github<br>
 untuk membuat repository di dalam github, cara nya hanya klik "new" dan isi semua field nya. untuk saya pribadi seperti berikut ini. ![membuat repository](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/membuat%20repository.png)
-2. implementasikan penggunaan branching yang terdiri dari master, development(v), feature A, dan feature B
+2. implementasikan penggunaan branching yang terdiri dari master, development, feature A, dan feature B
 untuk membuat branch caranya menuliskan commad git branch <nama_branch>. berikut adalah implementasinya.
 - branch development
 ![membuat branch development](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/membuat%20branch%20development.jpeg)
@@ -21,6 +21,28 @@ untuk membuat branch caranya menuliskan commad git branch <nama_branch>. berikut
 ![membuat branch featureA](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/membuat%20branch%20feature%20A.jpeg)
 - branch featureB
 ![membuat branch featureB](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/membuat%20branch%20feature%20B.jpeg)
-3. implementasikan instruksi git untuk push, pull, stash dan merge
+3. implementasikan instruksi git untuk push, pull, stash dan merge<br>
+Git push : untuk mengirimkan perubahan file setelah di commit ke remote repository.<br>
+Perintah git pull akan mengambil commit terbaru lalu otomatis menggabungkan (merge) dengan branch yang aktif.<br>
+stash ini berperan untuk menyimpan semua progress yang sudah kamu lakukan sejak commit terakhir tanpa membuat sebuah commit untuk state itu sendiri.<br>
+git merge: Berfungsi untuk meleburkan dua state dari dua branch. Dalam git merge, branch sumber akan dibuatkan sebuah commit baru khusus untuk menyatakan bahwa telah terjadi merging dengan branch lain.<br>
+
+### branch development
+- git add branch development
+!(https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/membuat%20branch%20feature%20B.jpeg)
+- git commit branch development
+- git push branch development
+- git merge branch development ke branch main
+### branch feature a
+- git add branch feature a
+- git commit branch feature a
+- git push branch feature a
+- git merge branch feature a ke branch development
+### branch feature b
+- git add branch feature b
+- git commit branch feature b
+- git push branch feature b
+- git merge branch feature b ke branch development
+
 4. implementasikan sebuah penanganan conflict di branch development ketika setelah merge dari branch featureA lalu merge dari branch featureB (conflict bisa terjadi jika kedua branch mengerjakan difile dan line code yang sama)
 5. merge menggunakan no fast forward
