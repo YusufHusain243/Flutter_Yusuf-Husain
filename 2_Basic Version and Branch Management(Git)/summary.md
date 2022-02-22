@@ -11,9 +11,16 @@ Universitas : Universitas Palangka Raya
 Hal yang paling menarik yang bisa saya dapatkan dari materi ini adalah tentang branh management. dimana biasanya saya akan cukup kesusahan dalam mengelola sebuah project, tetapi setelah mempelaari materi ini saya mendapatkan wawasan lebih agar nantinya ketika mengelola project dapat lebih rapi dan efisien. selain itu untuk penanganan conflic juga saya mendapatkan ilmu baru. karena ternyata dalam penanganan nya sangat mudah dan simle ketika dapat tervisualisasi dengan jelas. tidak seperti biasanya yang dilakukan secara manual melewati gitbash, conflic yang terjadi tidak akan tervisualisasi dengan jelas.
 
 ## Task
-1. membuat repository github(v)
-untuk membuat repository di dalam github, cara nya hanya klik "new" dan isi semua field nya. untuk saya pribadi seperti berikut ini. ![Teks alternatif](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/membuat%20repository.png)
+1. membuat repository github<br>
+untuk membuat repository di dalam github, cara nya hanya klik "new" dan isi semua field nya. untuk saya pribadi seperti berikut ini. ![membuat repository](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/membuat%20repository.png)
 2. implementasikan penggunaan branching yang terdiri dari master, development(v), feature A, dan feature B
+untuk membuat branch caranya menuliskan commad git branch <nama_branch>. berikut adalah implementasinya.
+- branch development
+![membuat branch development](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/membuat%20branch%20development.jpeg)
+- branch featureA
+![membuat branch featureA](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/membuat%20branch%20feature%20A.jpeg)
+- branch featureB
+![membuat branch featureB](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/membuat%20branch%20feature%20B.jpeg)
 3. implementasikan instruksi git untuk push, pull, stash dan merge
 4. implementasikan sebuah penanganan conflict di branch development ketika setelah merge dari branch featureA lalu merge dari branch featureB (conflict bisa terjadi jika kedua branch mengerjakan difile dan line code yang sama)
 5. merge menggunakan no fast forward
