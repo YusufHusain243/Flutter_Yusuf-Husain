@@ -12,7 +12,7 @@ Hal yang paling menarik yang bisa saya dapatkan dari materi ini adalah tentang b
 
 ## Task
 1. membuat repository github(v)
-untuk membuat repository di dalam github, cara nya hanya klik "new" dan isi semua field nya. untuk saya pribadi seperti berikut ini. https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/membuat%20repository.png
+untuk membuat repository di dalam github, cara nya hanya klik "new" dan isi semua field nya. untuk saya pribadi seperti berikut ini. ![Teks alternatif](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/membuat%20repository.png)
 2. implementasikan penggunaan branching yang terdiri dari master, development(v), feature A, dan feature B
 3. implementasikan instruksi git untuk push, pull, stash dan merge
 4. implementasikan sebuah penanganan conflict di branch development ketika setelah merge dari branch featureA lalu merge dari branch featureB (conflict bisa terjadi jika kedua branch mengerjakan difile dan line code yang sama)
