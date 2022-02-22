@@ -22,23 +22,23 @@ untuk membuat branch caranya menuliskan commad git branch <nama_branch>. berikut
 - branch featureB
 ![membuat branch featureB](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/membuat%20branch%20feature%20B.jpeg)
 3. implementasikan instruksi git untuk push, pull, stash dan merge<br>
-Git push : untuk mengirimkan perubahan file setelah di commit ke remote repository.<br>
-Perintah git pull akan mengambil commit terbaru lalu otomatis menggabungkan (merge) dengan branch yang aktif.<br>
-stash ini berperan untuk menyimpan semua progress yang sudah kamu lakukan sejak commit terakhir tanpa membuat sebuah commit untuk state itu sendiri.<br>
-git merge: Berfungsi untuk meleburkan dua state dari dua branch. Dalam git merge, branch sumber akan dibuatkan sebuah commit baru khusus untuk menyatakan bahwa telah terjadi merging dengan branch lain.<br>
+- Git push : untuk mengirimkan perubahan file setelah di commit ke remote repository.<br>
+- Perintah git pull akan mengambil commit terbaru lalu otomatis menggabungkan (merge) dengan branch yang aktif.<br>
+- stash ini berperan untuk menyimpan semua progress yang sudah kamu lakukan sejak commit terakhir tanpa membuat sebuah commit untuk state itu sendiri.<br>
+- git merge: Berfungsi untuk meleburkan dua state dari dua branch. Dalam git merge, branch sumber akan dibuatkan sebuah commit baru khusus untuk menyatakan bahwa telah terjadi merging dengan branch lain.<br>
 
-### branch development
+- ### branch development
 - git add branch development
-!(https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/membuat%20branch%20feature%20B.jpeg)
+![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/2_Basic%20Version%20and%20Branch%20Management(Git)/screenshots/membuat%20branch%20feature%20B.jpeg)
 - git commit branch development
 - git push branch development
 - git merge branch development ke branch main
-### branch feature a
+- ### branch feature a
 - git add branch feature a
 - git commit branch feature a
 - git push branch feature a
 - git merge branch feature a ke branch development
-### branch feature b
+- ### branch feature b
 - git add branch feature b
 - git commit branch feature b
 - git push branch feature b
