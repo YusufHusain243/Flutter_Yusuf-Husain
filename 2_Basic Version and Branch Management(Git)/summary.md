@@ -9,3 +9,10 @@ Universitas : Universitas Palangka Raya
 3. Pada materi ketiga diberikan materi dengan judul branch and conflic. dimana pada bagian ini dijelaskan mengenai branch termasuk apa itu branch, cara membuat dan menghapus branch, berpindah branch dan lainnya. branch ini sangat penting ketika mengelola project dalam sebuah tim dimana pastinya akan ada pembagian tugas untuk setiap anggota tim. nah, dengan branch tugas yang dibagi itu dapat dikerjakan di masing masing branch misalnya featureA, featureB...featureN. sehingga, dengan adanya branch ini mempermudah dan mempercepata pekerjaan developer. namun, branch ini nantinya harus digabung kan agar bisa menjadi sebuah project final atau project utuh. sehingga didalam penggabungannya pasti akan menimbulkan conflic atau erorr. untuk menangani itu disarankan untuk menggunakan github desktop agar conflict yang terjadi dapat tervisualisasikan dengan jelas. sehingga dalama perbaikan akan menjadi lebih mudah.
 
 Hal yang paling menarik yang bisa saya dapatkan dari materi ini adalah tentang branh management. dimana biasanya saya akan cukup kesusahan dalam mengelola sebuah project, tetapi setelah mempelaari materi ini saya mendapatkan wawasan lebih agar nantinya ketika mengelola project dapat lebih rapi dan efisien. selain itu untuk penanganan conflic juga saya mendapatkan ilmu baru. karena ternyata dalam penanganan nya sangat mudah dan simle ketika dapat tervisualisasi dengan jelas. tidak seperti biasanya yang dilakukan secara manual melewati gitbash, conflic yang terjadi tidak akan tervisualisasi dengan jelas.
+
+## Task
+1. membuat repository github(v)
+2. implementasikan penggunaan branching yang terdiri dari master, development(v), feature A, dan feature B
+3. implementasikan instruksi git untuk push, pull, stash dan merge
+4. implementasikan sebuah penanganan conflict di branch development ketika setelah merge dari branch featureA lalu merge dari branch featureB (conflict bisa terjadi jika kedua branch mengerjakan difile dan line code yang sama)
+5. merge menggunakan no fast forward
