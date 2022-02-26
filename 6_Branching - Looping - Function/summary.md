@@ -7,14 +7,14 @@ Universitas : Universitas Palangka Raya
 1. pengambilan keputusan
 pengambilan keputusan ini maksudnya adlaah menentukan alur program pada kondisi tertentu. pada dasaranya ada beberapa contoh conditional, tetapi pada materi ini hanya diberikan 1 yaitu "if" atau "if else". 
 
-if memerlukan nilai bool yaitu true or false untuk menentukan kondisi yang akan dijalankan. if juga akan menjalankan perintah jika bool adalah true. contohnya adalah
+- if memerlukan nilai bool yaitu true or false untuk menentukan kondisi yang akan dijalankan. if juga akan menjalankan perintah jika bool adalah true. contohnya adalah
 ```dart
 if(1 == 1){
     print(true);
 }
 ```
 
-if else. hampir mirip dengan if sebelumnya, namun kali ini ada tambahan "else" yang mana akan menjalankan perintah jika bool adalah false.contohnya adalah
+- if else. hampir mirip dengan if sebelumnya, namun kali ini ada tambahan "else" yang mana akan menjalankan perintah jika bool adalah false.contohnya adalah
 ```dart
 if(1 == 1){
     print(true);
@@ -23,7 +23,7 @@ if(1 == 1){
 }
 ```
 
-else if. hampir mirip dengan kedua konsep sebelumnya. yang membedakan hanyalah pada proses else if akan melakukan pengjuian pada nilai bool yang lain. dan perintah akan dijalankan jika bool adalah true. contohnya adalah
+- else if. hampir mirip dengan kedua konsep sebelumnya. yang membedakan hanyalah pada proses else if akan melakukan pengjuian pada nilai bool yang lain. dan perintah akan dijalankan jika bool adalah true. contohnya adalah
 ```dart
 if(1 == 1){
     print(true);
