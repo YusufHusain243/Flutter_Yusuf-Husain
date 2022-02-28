@@ -1,70 +1,3 @@
-# (7) Advance function-Async-Await
-Nama : Yusuf Husain <br>
-Nim : 193020503032 <br>
-Email : yusufhusain243@gmail.com <br>
-Universitas : Universitas Palangka Raya
-
-## Resume Advance function-Async-Await
-1. async-await
-2. 
-3. 
-
-## Task
-1. buatlah sebuah fungsi dengan spesifikasi berikut:
-- menerima 2 parameter, yaitu list data dan pengali
-- lakukan perulangan pada list data secara asynchronous
-- tiap perulangan, kalikan elemen list data dengan pengali
-- return list baru yang berisi hasil proses diatas
-2. buatlah sebuah list dengan spesifikasi berikut:
-- tiap element nya berupa list juga
-- tiap element wajib terdapat 2 data (sub-element)
-buatlah sebuah map dengan menggunakan list tersebut
-
-## Pembahasan
-1. pembahasan task pertama
-```dart
-import 'dart:io';
-
-//membuat fungsi future dengan tipe balikan List
-//dan mempunyai 2 parameter yaitu list dan integer
-Future<List> T1(List<int> listData, int pengali) async {
-  //membuat variabel hasil
-  int? hasil;
-  //membuat variabel listdatanew
-  var listDataNew = [];
-  //membuat perulangan list data dengan perulangan for in
-  for (var data in listData) {
-    //membuat delayed 1 second
-    await Future.delayed(Duration(seconds: 1), () {
-      //mengalikan setiap index list dengan pengali
-      hasil = data * pengali;
-      //menambah hasil perkalian ke list data baru
-      listDataNew.add(hasil);
-      //cetak setiap hasil perkalian
-      print("$data * $pengali = $hasil");
-    });
-  }
-  //kembalikan data baru
-  return listDataNew;
-}
-
-//fungsi utama
-void main() async {
-  //membuat list data
-  var listDdata = [1, 2, 3, 4, 5];
-  //cetak list data lama
-  print("Data Lama : $listDdata");
-  //membuat variabel list data new, dengan nilai balikan dari fungsi T1
-  var listDataNew = await T1(listDdata, 2);
-  //cetak hasil fungsi T1
-  print("Data Baru : $listDataNew");
-}
-```
-berikut adalah hasil output nya:
-
-
-2. pembahasan task kedua
-```dart
 import 'dart:io';
 
 //membuat fungsi dengan tipe list
@@ -143,5 +76,3 @@ void main() async {
   print("\nMAP\n=======================================");
   accessCategoriyAnimals();
 }
-
-```
