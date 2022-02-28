@@ -62,6 +62,7 @@ void main() async {
 ```
 berikut adalah hasil output nya:
 
+https://user-images.githubusercontent.com/74952343/155878328-b71b5a8e-96fa-45b4-baa2-5ec20a34b673.mp4
 
 2. pembahasan task kedua
 ```dart
@@ -145,3 +146,6 @@ void main() async {
 }
 
 ```
+
+berikut adalah hasil output nya
+![output_task2](https://user-images.githubusercontent.com/74952343/155878411-e80e4b68-b36b-4350-90a9-bc1d1b2ce67f.jpeg)
