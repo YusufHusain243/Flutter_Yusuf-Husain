@@ -21,3 +21,7 @@ Universitas : Universitas Palangka Raya
 buatlah sebuah map dengan menggunakan list tersebut
 
 ## Pembahasan
+
+
+https://user-images.githubusercontent.com/74952343/156290545-505a3619-b41a-47f9-bc4d-737f58650565.mp4
+
