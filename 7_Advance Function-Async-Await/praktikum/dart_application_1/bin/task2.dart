@@ -3,16 +3,16 @@ import 'dart:io';
 //membuat fungsi dengan tipe list
 List dataAnimals() {
   //membuat list of list dengan nama animals
-  List<List<String>> animals = [
+  List<List> animals = [
     //data data list
-    ['Ayam', 'Bebek'],
-    ['Kuda', 'Sapi']
+    ['Ayam', 2],
+    ['Kuda', 4],
   ];
   //kembalikan data animals
   return animals;
 }
 
-//membuat fungsi dengam tipe map
+// membuat fungsi dengan tipe map
 Map categoriyAnimals() {
   //membuat variabel sebagai penampung data dari List data animals;
   var animals = dataAnimals();
@@ -20,8 +20,11 @@ Map categoriyAnimals() {
   var categories = {};
   //membuat perulangan
   for (var i = 0; i < animals.length; i++) {
-    //setiap indeks perulangan menjadi key dari map dan akan memasukkan data list animals ke masing masing key
-    categories[i] = animals[i];
+    //setiap indeks ke nol dari data list animals menjadi key dari map dan indeks pertama dari data list animals akan menjadi value
+    // categories[animals[i][0]] = animals[i][1];
+    for (var j = 0; j < animals[i].length; j++) {
+      categories[animals[i][0]] = animals[i][1];
+    }
   }
   //kembalikan categories
   return categories;
@@ -52,18 +55,13 @@ void accessCategoriyAnimals() {
   //cetak map category
   print("Map : $categories");
   //membuat perulangan dari data category
-  for (var category in categories.keys) {
-    //membuat variabel penampung list data category
-    var temp = categories[category];
-    //cetak semua list data category
-    print("Akses Element Map : $temp");
-    //membuat perulangan pada setiap list data category
-    for (var i = 0; i < categories[category].length; i++) {
-      //membuat variabel penampung data list data category
-      var temp = categories[category][i];
-      //cetak semua data list data category
-      print("Akses Element List Dari Map : $temp");
-    }
+  for (var category in categories.entries) {
+    //cetak key map
+    var temp1 = category.key;
+    print("Akses Key Dari Map : $temp1");
+    //cetak value map
+    var temp2 = category.value;
+    print("Akses Value Dari Map : $temp2");
   }
 }
 
