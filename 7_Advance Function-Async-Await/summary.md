@@ -5,9 +5,12 @@ Email : yusufhusain243@gmail.com <br>
 Universitas : Universitas Palangka Raya
 
 ## Resume Advance function-Async-Await
-1. async-await
-2. 
-3. 
+1. async
+async akan menjalan kan beberapa proses tanpa perlu menunggu, proses ini ditulis dalam bentuk fungsi
+2. await
+await akan menunggu hingga proses async selesai dijalankan
+3. future
+future adalah data yang dapaty ditunggu
 
 ## Task
 1. buatlah sebuah fungsi dengan spesifikasi berikut:
@@ -18,7 +21,7 @@ Universitas : Universitas Palangka Raya
 2. buatlah sebuah list dengan spesifikasi berikut:
 - tiap element nya berupa list juga
 - tiap element wajib terdapat 2 data (sub-element)
-buatlah sebuah map dengan menggunakan list tersebut
+buatlah sebuah map dengan menggunakan list tersebut, fututre juga membawa data return dari fungsi async
 
 ## Pembahasan
 1. pembahasan task pertama
