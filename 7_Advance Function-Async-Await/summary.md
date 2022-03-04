@@ -6,11 +6,11 @@ Universitas : Universitas Palangka Raya
 
 ## Resume Advance function-Async-Await
 1. async
-async akan menjalan kan beberapa proses tanpa perlu menunggu, proses ini ditulis dalam bentuk fungsi
+async akan menjalan kan beberapa proses tanpa perlu menunggu, proses ini ditulis dalam bentuk fungsi.
 2. await
-await akan menunggu hingga proses async selesai dijalankan
+await akan menunggu hingga proses async selesai dijalankan.
 3. future
-future adalah data yang dapaty ditunggu
+future adalah data yang dapat ditunggu. future juga membawa data return dari fungsi async.
 
 ## Task
 1. buatlah sebuah fungsi dengan spesifikasi berikut:
