@@ -63,6 +63,10 @@ void main() async {
 berikut adalah hasil output nya:
 
 
+https://user-images.githubusercontent.com/74952343/156875001-c4a768f9-5b40-43e1-b85b-af18e86a896b.mp4
+
+
+
 2. pembahasan task kedua
 ```dart
 import 'dart:io';
@@ -145,6 +149,3 @@ void main() async {
 }
 
 ```
-
-berikut adalah outputnya
-![]https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/8_Collection/screenshots/output_task2.jpeg
