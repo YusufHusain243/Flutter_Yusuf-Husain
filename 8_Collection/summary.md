@@ -1,13 +1,13 @@
-# (7) Advance function-Async-Await
+# (7) Collection
 Nama : Yusuf Husain <br>
 Nim : 193020503032 <br>
 Email : yusufhusain243@gmail.com <br>
 Universitas : Universitas Palangka Raya
 
-## Resume Advance function-Async-Await
-1. async-await
-2. 
-3. 
+## Resume Collection
+1. collection adalah kumpulan data data pada satu tempat. pada dart sendiri ada beberapa contoh collection yaitu misalnya list dan map
+2. list sendiri adalah data yang disimpan secara berbaris, dan tiap data memiliki index masing masing
+3. yang kedua adalah map. dimana map ini menyimpan data secara key-value. key ini berfungsi mirip seperti index pada list
 
 ## Task
 1. buatlah sebuah fungsi dengan spesifikasi berikut:
