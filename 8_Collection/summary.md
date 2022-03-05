@@ -145,3 +145,6 @@ void main() async {
 }
 
 ```
+
+berikut adalah outputnya
+![]https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/8_Collection/screenshots/output_task2.jpeg
