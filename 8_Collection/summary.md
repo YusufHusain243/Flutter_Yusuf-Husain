@@ -149,3 +149,5 @@ void main() async {
 }
 
 ```
+berikut adalah outputnya
+![output_task2](https://user-images.githubusercontent.com/74952343/156875096-aac0cf6e-fc0c-4bd2-ba37-9b3508c800a2.jpeg)
