@@ -7,7 +7,7 @@ Universitas : Universitas Palangka Raya
 ## Resume Collection
 1. collection adalah kumpulan data data pada satu tempat. pada dart sendiri ada beberapa contoh collection yaitu misalnya list dan map
 2. list sendiri adalah data yang disimpan secara berbaris, dan tiap data memiliki index masing masing
-3. yang kedua adalah map. dimana map ini menyimpan data secara key-value. key ini berfungsi mirip seperti index pada list
+3. yang kedua adalah map. dimana map ini menyimpan data secara key-value. key ini berfungsi mirip seperti index pada list.
 
 ## Task
 1. buatlah sebuah fungsi dengan spesifikasi berikut:
