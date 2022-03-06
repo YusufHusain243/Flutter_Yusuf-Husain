@@ -66,6 +66,7 @@ Universitas : Universitas Palangka Raya
    ```
 
    - output
+    ![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/big_task_1/screenshots/output_problem1.jpeg).
 
 2. berikut adalah program dan output untuk soal kedua
 
@@ -126,6 +127,7 @@ Universitas : Universitas Palangka Raya
    ```
 
    - output
+    ![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/big_task_1/screenshots/output_problem2.jpeg).
 
 3. berikut adalah program dan output untuk soal ketiga
 
@@ -193,6 +195,7 @@ Universitas : Universitas Palangka Raya
    ```
 
    - output
+    ![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/big_task_1/screenshots/output_problem3.jpeg).
 
 4. berikut adalah program dan output untuk soal keempat
 
@@ -242,3 +245,4 @@ Universitas : Universitas Palangka Raya
    ```
 
    - output
+    ![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/big_task_1/screenshots/output_problem4.jpeg).
