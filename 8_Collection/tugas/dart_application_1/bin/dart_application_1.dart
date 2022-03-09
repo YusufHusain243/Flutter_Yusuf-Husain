@@ -325,5 +325,5 @@ Future<void> nomor30() async {
 }
 
 void main() {
-  nomor10();
+  nomor9();
 }
