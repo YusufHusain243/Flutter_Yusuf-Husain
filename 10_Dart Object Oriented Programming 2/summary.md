@@ -107,7 +107,7 @@ selain ketiga poin diatas, ada juga method override. dimana override ini adalah 
      ```
 
    - output
-     ![](https://user-images.githubusercontent.com/74952343/156875096-aac0cf6e-fc0c-4bd2-ba37-9b3508c800a2.jpeg)
+     ![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/10_Dart%20Object%20Oriented%20Programming%202/screenshots/outputTask1.jpeg)
 
 2. berikut adalah program dan output task nomor 2
 
@@ -178,5 +178,4 @@ selain ketiga poin diatas, ada juga method override. dimana override ini adalah 
      ```
 
    - output
-   ![](https://user-images.githubusercontent.com/74952343/156875096-aac0cf6e-fc0c-4bd2-ba37-9b3508c800a2.jpeg)
-
+     ![](https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/10_Dart%20Object%20Oriented%20Programming%202/screenshots/outputTask2.jpeg)
