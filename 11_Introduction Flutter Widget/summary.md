@@ -100,6 +100,8 @@ class _FlutterTimeDemoState extends State<FlutterTimeDemo> {
 
 ```
 berikut adalah outputnya
+![outputTask1](https://user-images.githubusercontent.com/74952343/157823437-a58c9a4b-01a4-47bc-b8c7-852805ddd1ce.jpeg)
+
 
 2. Berikut adalah program dan outputnya
 
@@ -184,3 +186,4 @@ class Time extends StatelessWidget {
 
 ```
 berikut adalah outputnya
+![outputTask2](https://user-images.githubusercontent.com/74952343/157823457-90ee4522-4f81-4a79-815d-2b98b681d64b.jpeg)
