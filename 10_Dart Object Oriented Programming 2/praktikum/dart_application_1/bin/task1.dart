@@ -22,14 +22,14 @@ class BangunRuang {
 //membuat class kubus inheritance dari bangun ruang
 class Kubus extends BangunRuang {
   //membuat property sisi dengan tipe integer
-  int sisi;
+  int? sisi;
   //membuat constructor untuk class kubus
-  Kubus(this.sisi);
+  Kubus({this.sisi});
   //override method volume yang ada di super class
   @override
   int volume() {
     //mencari volume kubus
-    int hasil = sisi * sisi * sisi;
+    int hasil = this.sisi! * this.sisi! * this.sisi!;
     //balikkan hasil
     return hasil;
   }
@@ -44,7 +44,9 @@ void main() {
   //membuat objek balok
   Balok balok = Balok();
   //membuat objek kubus dengan mengisi konstruktor dengan nilai 5
-  Kubus kubus = Kubus(5);
+  Kubus kubus = Kubus();
+  //mengisi property sisi pada class kubus dengan nilai 5
+  kubus.sisi = 5;
 
   //mencetak fungsi volume pada class kubus
   print(kubus.volume());
