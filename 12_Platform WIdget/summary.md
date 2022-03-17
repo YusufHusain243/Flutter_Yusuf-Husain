@@ -434,9 +434,9 @@ Universitas : Universitas Palangka Raya
      ```
 
    - Output
-      ![output1_Task1](https://user-images.githubusercontent.com/74952343/158730749-78e19a98-b661-47f8-8aa4-bffc7ce2301e.jpeg)
-![output2_Task1](https://user-images.githubusercontent.com/74952343/158730753-029acfac-28d8-465c-835a-4ea080864e90.jpeg)
-
+     <br>
+     ![output1_Task1](https://user-images.githubusercontent.com/74952343/158730749-78e19a98-b661-47f8-8aa4-bffc7ce2301e.jpeg)
+     ![output2_Task1](https://user-images.githubusercontent.com/74952343/158730753-029acfac-28d8-465c-835a-4ea080864e90.jpeg)
 
 2. Berikut adalah program dan outputnya
 
@@ -718,5 +718,5 @@ Universitas : Universitas Palangka Raya
      ```
 
 - Output
-   ![output_Task2](https://user-images.githubusercontent.com/74952343/158730776-45321b06-854b-49f4-ab46-20cb73724a60.jpeg)
-
+  <br>
+  ![output_Task2](https://user-images.githubusercontent.com/74952343/158730776-45321b06-854b-49f4-ab46-20cb73724a60.jpeg)
