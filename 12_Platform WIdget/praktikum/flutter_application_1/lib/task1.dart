@@ -10,198 +10,388 @@ void main() {
 
 //membuat class MyApp extend dari stateless widget
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    //menggunakan material App agar bisa menggunakan material widget yang ada
     return MaterialApp(
+      //menghilangkan bannen debug
       debugShowCheckedModeBanner: false,
+      //menggunakan safe area
       home: SafeArea(
+        //menggunakan scaffold
         child: Scaffold(
+          //membuat appbar
           appBar: AppBar(
+            //dengan titel telegram
             title: Text('Telegram'),
-            actions: [
-              Container(
-                margin: EdgeInsets.only(right: 20),
+            //lalu memiliki action berupa widget
+            actions: <Widget>[
+              //diantaranya yang pertama ada padding
+              Padding(
+                //memiliki padding di sebelah kanan sebesar 15
+                padding: EdgeInsets.only(right: 15),
+                //didalam nya memiliki icon
                 child: Icon(
+                  //dengan tipe search
                   Icons.search,
+                  //dan ukuran 26
+                  size: 26.0,
                 ),
-              )
+              ),
             ],
           ),
+          //membuat drawer
           drawer: Drawer(
+            //dimana didalamnya memiliki column
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  padding: EdgeInsets.all(10),
-                  color: Colors.blue,
-                  height: 220,
-                  width: 304,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.account_circle,
-                        size: 130,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 15),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Yusuf Husain',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Text(
-                                '+6281xxxxxxxxxx',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(25),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            child: Row(
-                              children: [
-                                Icon(Icons.group_sharp),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                Text(
-                                  'New Group',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 25,
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            child: Row(
-                              children: [
-                                Icon(Icons.lock),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                Text(
-                                  'New Secret Chat',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                //dah isinya memanggil widget atau class HeaderDrawer
+                HeaderDrawer(),
+                //lalu dibawahnya memanggil atau class BodyDrawer
+                BodyDrawer(),
               ],
             ),
           ),
-          body: ListView(
+          //pada body memanggil widget atau class Body
+          body: Body(),
+          //dan pada bottom navigation bar memanggil widget atau class ButtonBottom
+          bottomNavigationBar: ButtonBottom(),
+        ),
+      ),
+    );
+  }
+}
+
+//membuat class atau widet ButtonBottom
+class ButtonBottom extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //membuat row
+    return Row(
+      //dengan align end atau bisa dibilang di ujung kanan
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        //memiliki padding
+        Padding(
+          //dengan semua sisi diberi padding 30
+          padding: EdgeInsets.all(30),
+          //lalu didalamnya ada button
+          child: FloatingActionButton(
+            onPressed: null,
+            //dengan icon create
+            child: Icon(Icons.create),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+//membuat class atau widget Body
+class Body extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //didalamnya terdapat listview
+    return ListView(
+      //dengan padding dibagian atas 5
+      padding: EdgeInsets.only(top: 5),
+      children: [
+        //didalamnya memiliki ListTile
+        ListTile(
+          //dimana leading atau objek paling kiri nya yaitu cricle
+          leading: CircleAvatar(
+            //dengan radius 30
+            radius: 30,
+            //dan didalamnya terdapat text YH
+            child: Text('YH'),
+          ),
+          //memiliki title berupa text
+          title: Text(
+            //dengan isi Yusuf Husain
+            'Yusuf Husain',
+            //lalu memiliki style
+            style: TextStyle(
+              //yaitu font nya bold
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          //lalu memiliki subtitle yaitu berupa text
+          subtitle: Text('How Are You?'),
+          //dan memiliki trailing yang berupa text juga
+          trailing: Text('1.32 PM'),
+        ),
+        //dibawah listtile memiliki sebuah divider
+        Divider(
+          //dengan thicness sebesar 1
+          thickness: 1,
+        ),
+        //memiliki listile kedua
+        ListTile(
+          //dimana leading atau objek paling kiri nya yaitu cricle
+          leading: CircleAvatar(
+            //dengan radius 30
+            radius: 30,
+            //dan didalamnya terdapat text A
+            child: Text('A'),
+          ),
+          //memiliki title berupa text
+          title: Text(
+            //dengan isi Yusuf Husain
+            'Alex',
+            //lalu memiliki style
+            style: TextStyle(
+              //yaitu font nya bold
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          //lalu memiliki subtitle yaitu berupa text
+          subtitle: Text('How Are You?'),
+          //dan memiliki trailing yang berupa text juga
+          trailing: Text('1.32 PM'),
+        ),
+        //dibawah listtile memiliki sebuah divider
+        Divider(
+          //dengan thicness sebesar 1
+          thickness: 1,
+        ),
+      ],
+    );
+  }
+}
+
+//membuat class atau widget BodyDrawer
+class BodyDrawer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //didalamnya terdapat padding
+    return Padding(
+      //dengan semua sisinya diberi padding 20
+      padding: EdgeInsets.all(20),
+      //lalu memiliki column
+      child: Column(
+        children: [
+          //dan didalamnya terdapat row
+          Row(
             children: [
-              Container(
-                height: 80,
-                child: Card(
-                  elevation: 5,
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(5),
-                      ),
-                      Image.network(
-                        'https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png',
-                        height: 60,
-                        width: 60,
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                'John Doe',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 10),
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                'Hai, How Are You?',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 100,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('01.24 PM'),
-                        ],
-                      )
-                    ],
-                  ),
+              //dan didalam row terdapat icon
+              Icon(
+                Icons.group_sharp,
+              ),
+              //lalu diberi jarak dengan size box dengan ukuran 25
+              SizedBox(
+                width: 25,
+              ),
+              //lalu terdapat text
+              Text(
+                'New Group',
+                //dengan style
+                style: TextStyle(
+                  //yaitu font bold
+                  fontWeight: FontWeight.bold,
+                  //dan dengan ukuran 15
+                  fontSize: 15,
                 ),
               ),
             ],
           ),
-          bottomNavigationBar: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+          //setiap row diberi jarak size box yaitu 20.
+          //untuk setiap child dari colum ini memiliki konsep yang sama namun yang membedakan hanyalah icon dan text yang ada didalamnya
+          SizedBox(
+            height: 20,
+          ),
+          Row(
             children: [
-              Padding(
-                padding: EdgeInsets.all(40),
-                child: FloatingActionButton(
-                  onPressed: null,
-                  child: Icon(Icons.create),
+              Icon(
+                Icons.lock,
+              ),
+              SizedBox(
+                width: 25,
+              ),
+              Text(
+                'New Secret Chat',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
                 ),
               ),
             ],
           ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Icon(
+                Icons.campaign,
+              ),
+              SizedBox(
+                width: 25,
+              ),
+              Text(
+                'New Channel',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Icon(
+                Icons.account_box,
+              ),
+              SizedBox(
+                width: 25,
+              ),
+              Text(
+                'Contacts',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Icon(
+                Icons.person_add,
+              ),
+              SizedBox(
+                width: 25,
+              ),
+              Text(
+                'Invite Friends',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Icon(
+                Icons.settings,
+              ),
+              SizedBox(
+                width: 25,
+              ),
+              Text(
+                'Settings',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Icon(
+                Icons.quiz_rounded,
+              ),
+              SizedBox(
+                width: 25,
+              ),
+              Text(
+                'Telegram FAQ',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+//membuat class atau widget HeaderDrawer
+class HeaderDrawer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //didalamnya memiliki container
+    return Container(
+      //dengan warna biru
+      color: Colors.blue,
+      //lebar container adalah full dari ruang yang ada
+      width: double.infinity,
+      //didalamnya memiliki padding
+      child: Padding(
+        //dengan semua sisi diberi padding 20
+        padding: EdgeInsets.all(20),
+        //didalam padiing memiliki column
+        child: Column(
+          //dengan align start atau rata kiri
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            //didalam colum yang pertama terdapat circle
+            CircleAvatar(
+              //dengan backgroun putih
+              backgroundColor: Colors.white,
+              //dan memiliki radius 50
+              radius: 50,
+              //lalu didalamnya terdapata text
+              child: Text(
+                'YH',
+                //dengan style
+                style: TextStyle(
+                  //font bold
+                  fontWeight: FontWeight.bold,
+                  //dan font size 35
+                  fontSize: 35,
+                ),
+              ),
+            ),
+            //lalu terdapat sizebox untuk memberi jarak antara circle dan widget berikutnya
+            SizedBox(
+              height: 20,
+            ),
+            //selanjutnya terdapat text
+            Text(
+              'Yusuf Husain',
+              //dengan style
+              style: TextStyle(
+                //font bold
+                fontWeight: FontWeight.bold,
+                //lalu font size 19
+                fontSize: 19,
+                //dengan color white
+                color: Colors.white,
+              ),
+            ),
+            //lalu diberijarak 5
+            SizedBox(
+              height: 5,
+            ),
+            //selanjutnya terdapat text
+            Text(
+              '+62 818 18181818',
+              //dengan style
+              style: TextStyle(
+                //font size 15
+                fontSize: 15,
+                //warna putih
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
       ),
     );
