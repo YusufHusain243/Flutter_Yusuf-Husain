@@ -77,7 +77,7 @@ Universitas : Universitas Palangka Raya
 
      ```
 
-- output
+   - output
 
 2. berikut adalah program dan output untuk task 2
 
@@ -184,4 +184,4 @@ Universitas : Universitas Palangka Raya
 
      ```
 
-- output
+   - output
