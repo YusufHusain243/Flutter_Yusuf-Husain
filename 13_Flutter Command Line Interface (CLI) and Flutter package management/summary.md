@@ -78,6 +78,8 @@ Universitas : Universitas Palangka Raya
      ```
 
    - output
+      ![output_task1](https://user-images.githubusercontent.com/74952343/159168397-e71d95e4-c1c0-4a58-957b-d7c5c7366f92.jpeg)
+
 
 2. berikut adalah program dan output untuk task 2
 
@@ -185,3 +187,9 @@ Universitas : Universitas Palangka Raya
      ```
 
    - output
+      - ![output1_task2](https://user-images.githubusercontent.com/74952343/159168406-ac37b287-09fd-4d42-a555-97d43c2c7ab1.jpeg)
+      - ![output2_task2](https://user-images.githubusercontent.com/74952343/159168412-c9f8aa89-ce4a-48fd-b2b3-4b21062910a8.jpeg)
+      - ![output3_task2](https://user-images.githubusercontent.com/74952343/159168417-9ae2dfcf-a35c-4b25-aa03-f59dbc7d61dd.jpeg)
+
+
+
