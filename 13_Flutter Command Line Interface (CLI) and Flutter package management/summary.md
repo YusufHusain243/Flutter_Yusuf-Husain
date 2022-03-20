@@ -21,7 +21,7 @@ Universitas : Universitas Palangka Raya
    - flutter channel
      adalah perintah untuk menampilkan daftar flutter channel yang tersedia dan menunjukkan channel yang digunakan saat ini
    - flutter pub
-     ada dua syntak yang bisa kita gunakan, yaitu :
+     ada dua syntak yang bisa kita gunakan, yaitu:
      - flutter pub add, untuk menambahkan packages ke dependencies yang ada di pubspec.yaml
      - flutter pub get, untuk mendownload semua packages atau dependencies yang ada di pubspec.yaml
    - flutter build
