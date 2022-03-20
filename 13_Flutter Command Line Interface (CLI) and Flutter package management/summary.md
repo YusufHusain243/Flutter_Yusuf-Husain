@@ -7,9 +7,30 @@ Universitas : Universitas Palangka Raya
 
 ## Resume Flutter Command Line Interface(CLI) and Flutter package management
 
-1.
-2.
-3.
+1. flutter cli adalah alat yang digunakan untuk berinteraksi dengan flutter SDK, dan perintahnya dijalankan didalam terminal. ada beberapa CLI commands yang penting antara lain adalah flutter doctor, flutter create, flutter run, flutter emulator, flutter channel, flutter pub, flutter build, flutter clean
+2. berikut adalah penjelasan dari beberapa CLI command diatas
+
+   - flutter doctor
+     adalah perintah untuk menampilkan informasi software yang dibutuhkan flutter
+   - flutter create
+     adalah perintah untuk membuat project aplikasi flutter baru di directory tertentu
+   - flutter run
+     flutter run adalah perintah untuk menjalankan project aplikasi didevice yang tersedia
+   - flutter emulator
+     adalah perintah untuk menampilkan daftar emulator yang terinstall dan menampilkan option untuk membuka emulator atau membuat emulator baru
+   - flutter channel
+     adalah perintah untuk menampilkan daftar flutter channel yang tersedia dan menunjukkan channel yang digunakan saat ini
+   - flutter pub
+     ada dua syntak yang bisa kita gunakan, yaitu :
+     - flutter pub add, untuk menambahkan packages ke dependencies yang ada di pubspec.yaml
+     - flutter pub get, untuk mendownload semua packages atau dependencies yang ada di pubspec.yaml
+   - flutter build
+     adalah perintah untuk memproduksi sebuah file aplikasi untuk keperluan deploy atau publish ke appstore ,playstore dll.
+   - flutter clean
+     adalah perintah untuk menghapus folder build seta file lainnya yang dihasilkan saat kita menjalankan aplikasi di emulator. perintah ini akan memperkecil ukuran project tersebut
+
+3. packages management
+   flutter mendukung sharing packages. packages ini dibuat developers lain dimana dengan ini dapat mempercepat pengembangan aplikasi karena tidak perlu membuat semuanya dari awal atau from scratch.
 
 ## Task
 
