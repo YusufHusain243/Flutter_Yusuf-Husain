@@ -37,13 +37,10 @@ class GenerateBarcode extends StatefulWidget {
 
   @override
   State<GenerateBarcode> createState() => _GenerateBarcodeState();
-
-  static code128() {}
 }
 
 class _GenerateBarcodeState extends State<GenerateBarcode> {
-  String? data, type;
-  List _valType = ["code128"];
+  String? data;
 
   Widget generateBarcode() {
     if (data != null) {
