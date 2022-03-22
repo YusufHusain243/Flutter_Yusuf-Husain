@@ -124,7 +124,8 @@ Universitas : Universitas Palangka Raya
 
      ```
 
-   - output
+   - output<br>
+      ![output_task1](https://user-images.githubusercontent.com/74952343/159401576-f29d0386-98db-45f8-87de-a509c80ae037.jpeg)
 
 2. berikut adalajh program dan outputnya
 
@@ -194,4 +195,6 @@ Universitas : Universitas Palangka Raya
 
      ```
 
-   - output
+   - output<br>
+      ![output_task2](https://user-images.githubusercontent.com/74952343/159401609-3ff17113-8710-4e50-8d6a-7255fe027f02.jpeg)
+
