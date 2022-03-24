@@ -11,7 +11,7 @@ class GetData {
   //memiliki property apiUrl yang berisi url api
   final String apiUrl = "https://reqres.in/api/users?per_page=10";
 
-  // memilikimethod dengan tipe future dan dengan balikan List<dynamic>
+  // memiliki method dengan tipe future dan dengan balikan List<dynamic>
   Future<List<dynamic>> _fecthDataUsers() async {
     //mengambil data dari api menggunakan http.get
     var result = await http.get(Uri.parse(apiUrl));
