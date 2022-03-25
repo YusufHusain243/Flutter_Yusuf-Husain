@@ -250,4 +250,9 @@ Universitas : Universitas Palangka Raya
      }
      ```
 
-2. output
+2. output<br>
+   
+
+https://user-images.githubusercontent.com/74952343/159828340-ae87071a-96fd-4e11-8e9b-ee5e6e1a7b95.mp4
+
+
