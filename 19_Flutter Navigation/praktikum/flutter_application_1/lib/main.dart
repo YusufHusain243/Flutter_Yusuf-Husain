@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/add_contacts.dart';
 import 'package:flutter_application_1/data.dart';
+import 'package:flutter_application_1/detail_contact.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Named Routes Demo',
+      routes: {
+        '/detail': (context) => const DetailContact(),
+      },
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
@@ -89,27 +94,10 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                     onTap: () {
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        builder: (context) {
-                          return SizedBox(
-                            height: 200,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(snapshot.data[index]['name']),
-                                Text(snapshot.data[index]['telepon']),
-                                Text(snapshot.data[index]['jenis_kelamin']),
-                                Text(snapshot.data[index]['status'].toString()),
-                                Text(
-                                  snapshot.data[index]['bahasa_pemrograman']
-                                      .toString(),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
+                      Navigator.pushNamed(
+                        context,
+                        '/detail',
+                        arguments: snapshot.data[index],
                       );
                     },
                   );

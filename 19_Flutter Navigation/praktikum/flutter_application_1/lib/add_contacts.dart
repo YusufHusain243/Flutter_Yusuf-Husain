@@ -51,151 +51,153 @@ class _AddContactsState extends State<AddContacts> {
           title: const Text('Create New Contacts'),
           automaticallyImplyLeading: false,
         ),
-        body: Container(
-          padding: EdgeInsets.all(20),
-          child: Form(
-            key: formKey,
-            child: Column(
-              children: [
-                TextFormField(
-                  controller: nameInput,
-                  decoration: new InputDecoration(
-                    hintText: "Masukkan Nama Lengkap Anda",
-                    labelText: "Nama Lengkap",
-                    icon: Icon(
-                      Icons.account_box_rounded,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: new BorderRadius.circular(5.0),
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Nama tidak boleh kosong';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  keyboardType: TextInputType.phone,
-                  controller: numberPhoneInput,
-                  decoration: new InputDecoration(
-                    hintText: "Masukkan Nomor Telepon Anda",
-                    labelText: "Nomor Telepon",
-                    icon: Icon(
-                      Icons.phone_rounded,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: new BorderRadius.circular(5.0),
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Nomor Telepon tidak boleh kosong';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text('Jenis Kelamin'),
-                RadioGroup<String>.builder(
-                  direction: Axis.horizontal,
-                  groupValue: _groupValue,
-                  horizontalAlignment: MainAxisAlignment.spaceAround,
-                  onChanged: (value) {
-                    setState(() {
-                      _groupValue = value!;
-                    });
-                  },
-                  items: _jenisKelamin,
-                  textStyle: TextStyle(fontSize: 15, color: Colors.blue),
-                  itemBuilder: (item) => RadioButtonBuilder(
-                    item,
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text('Bahasa Pemrograman'),
-                MultiSelectDialogField(
-                  items: _programmingList
-                      .map((e) => MultiSelectItem(e, e))
-                      .toList(),
-                  listType: MultiSelectListType.CHIP,
-                  onConfirm: (values) {
-                    _selected = values;
-                  },
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text('Status'),
-                DropdownButtonHideUnderline(
-                  child: DropdownButton2(
-                    hint: Text(
-                      'Select Item',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Theme.of(context).hintColor,
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.all(20),
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: nameInput,
+                    decoration: new InputDecoration(
+                      hintText: "Masukkan Nama Lengkap Anda",
+                      labelText: "Nama Lengkap",
+                      icon: Icon(
+                        Icons.account_box_rounded,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: new BorderRadius.circular(5.0),
                       ),
                     ),
-                    items: _status
-                        .map((item) => DropdownMenuItem<String>(
-                              value: item,
-                              child: Text(
-                                item,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ))
-                        .toList(),
-                    value: selecttedStatus,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Nama tidak boleh kosong';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.phone,
+                    controller: numberPhoneInput,
+                    decoration: new InputDecoration(
+                      hintText: "Masukkan Nomor Telepon Anda",
+                      labelText: "Nomor Telepon",
+                      icon: Icon(
+                        Icons.phone_rounded,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: new BorderRadius.circular(5.0),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Nomor Telepon tidak boleh kosong';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text('Jenis Kelamin'),
+                  RadioGroup<String>.builder(
+                    direction: Axis.horizontal,
+                    groupValue: _groupValue,
+                    horizontalAlignment: MainAxisAlignment.spaceAround,
                     onChanged: (value) {
                       setState(() {
-                        selecttedStatus = value as String;
+                        _groupValue = value!;
                       });
                     },
-                    buttonHeight: 40,
-                    buttonWidth: 140,
-                    itemHeight: 40,
+                    items: _jenisKelamin,
+                    textStyle: TextStyle(fontSize: 15, color: Colors.blue),
+                    itemBuilder: (item) => RadioButtonBuilder(
+                      item,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(200, 50),
-                    maximumSize: const Size(200, 50),
+                  SizedBox(
+                    height: 20,
                   ),
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      widget.data.add(
-                        {
-                          'name': nameInput.text,
-                          'telepon': numberPhoneInput.text,
-                          'jenis_kelamin': _groupValue,
-                          'status': selecttedStatus,
-                          'bahasa_pemrograman': _selected,
-                        },
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text("Tambah Contact Berhasil"),
+                  Text('Bahasa Pemrograman'),
+                  MultiSelectDialogField(
+                    items: _programmingList
+                        .map((e) => MultiSelectItem(e, e))
+                        .toList(),
+                    listType: MultiSelectListType.CHIP,
+                    onConfirm: (values) {
+                      _selected = values;
+                    },
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text('Status'),
+                  DropdownButtonHideUnderline(
+                    child: DropdownButton2(
+                      hint: Text(
+                        'Select Item',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Theme.of(context).hintColor,
                         ),
-                      );
-                      Navigator.pop(context);
-                    }
-                  },
-                  child: const Text('Tambah Contact'),
-                ),
-              ],
+                      ),
+                      items: _status
+                          .map((item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ))
+                          .toList(),
+                      value: selecttedStatus,
+                      onChanged: (value) {
+                        setState(() {
+                          selecttedStatus = value as String;
+                        });
+                      },
+                      buttonHeight: 40,
+                      buttonWidth: 140,
+                      itemHeight: 40,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(200, 50),
+                      maximumSize: const Size(200, 50),
+                    ),
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        widget.data.add(
+                          {
+                            'name': nameInput.text,
+                            'telepon': numberPhoneInput.text,
+                            'jenis_kelamin': _groupValue,
+                            'status': selecttedStatus,
+                            'bahasa_pemrograman': _selected,
+                          },
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("Tambah Contact Berhasil"),
+                          ),
+                        );
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: const Text('Tambah Contact'),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
