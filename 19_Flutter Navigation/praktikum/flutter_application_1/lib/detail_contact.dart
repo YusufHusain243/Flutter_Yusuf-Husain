@@ -18,14 +18,6 @@ class DetailContact extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Text(snapshot.data[index]['name']),
-                  //           Text(snapshot.data[index]['telepon']),
-                  //           Text(snapshot.data[index]['jenis_kelamin']),
-                  //           Text(snapshot.data[index]['status'].toString()),
-                  //           Text(
-                  //             snapshot.data[index]['bahasa_pemrograman']
-                  //                 .toString(),
-                  //           ),
                   Text(
                     'Nama : ' + args['name'].toString(),
                   ),
