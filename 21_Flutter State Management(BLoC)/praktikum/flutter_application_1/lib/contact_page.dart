@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/bloc/contact_bloc.dart';
@@ -15,8 +13,6 @@ class ContactPage extends StatefulWidget {
 }
 
 class _ContactPageState extends State<ContactPage> {
-  final Random _random = Random();
-
   var formKey = GlobalKey<FormState>();
   var nameController = TextEditingController();
   var numberPhoneController = TextEditingController();
