@@ -7,9 +7,18 @@ Universitas : Universitas Palangka Raya
 
 ## Resume Flutter State Management (BLoC)
 
-1.
-2.
-3.
+1. declarative UI
+   flutter memiliki sifat decalrative yang artinya flutter membangun UI nya pada screen untuk mencerminkan keadaan state saat ini. state adalah ketika sebuah widget sedang aktif dan widget tersebut menyimpan data di memori. flutter akan membangun ulang ui nya ketika ada state atau data yang diubah. ada 2 jenis state dalam flutter, ephemeral state dan app state.
+2. provider
+   provider adalah salah satu package state management yang ada di flutter. class yang perlu diperhatikan dalam penggunaan provider yaitu:
+   - dari package provider
+     - ChangeNotifierProvider
+     - MultiProvider
+     - Consumer
+   - built in class dari flutter sdk
+     - ChangeNotifier
+3. BLoC
+   BLoC memisahkan antara business logic dengan UI. cara kerja BLoC adalah menerima event sebagai input, dianalisa dan dikelola didalam BLoC dan menghasil state sebagai output.
 
 ## Task
 
@@ -754,5 +763,3 @@ Universitas : Universitas Palangka Raya
 2. output
 
 https://user-images.githubusercontent.com/74952343/162360946-b5ef6bd2-c09d-47e1-926b-029e9e2135e1.mp4
-
-
