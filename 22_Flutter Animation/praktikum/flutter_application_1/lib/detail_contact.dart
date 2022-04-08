@@ -45,9 +45,6 @@ class _DetailContactState extends State<DetailContact> {
                         alamatController.text.toString(),
                       ),
                     );
-                namaPanggilanController.clear();
-                pendidikanController.clear();
-                alamatController.clear();
               },
               child: const Text('Simpan'),
             ),
