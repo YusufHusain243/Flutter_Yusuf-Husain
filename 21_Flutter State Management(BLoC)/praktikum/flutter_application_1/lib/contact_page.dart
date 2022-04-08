@@ -43,7 +43,7 @@ class _ContactPageState extends State<ContactPage> {
               size: 30,
             ),
             onPressed: () {
-              BottomSheet(context);
+              bottomSheet(context);
             },
           ),
         ],
@@ -65,7 +65,7 @@ class _ContactPageState extends State<ContactPage> {
     );
   }
 
-  Future<dynamic> BottomSheet(BuildContext context) {
+  Future<dynamic> bottomSheet(BuildContext context) {
     return showModalBottomSheet(
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
@@ -102,17 +102,26 @@ class _ContactPageState extends State<ContactPage> {
                     fontSize: 18,
                   ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    context.read<ContactBloc>().add(
-                          AddContact(
-                            nameController.text,
-                            numberPhoneController.text,
-                          ),
-                        );
-                    Navigator.pop(context);
+                BlocBuilder<ContactBloc, ContactState>(
+                  builder: (context, state) {
+                    return TextButton(
+                      onPressed: () {
+                        var id =
+                            state.contacts[state.contacts.length - 1].id + 1;
+                        context.read<ContactBloc>().add(
+                              AddContact(
+                                id,
+                                nameController.text,
+                                numberPhoneController.text,
+                              ),
+                            );
+                        nameController.clear();
+                        numberPhoneController.clear();
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Simpan'),
+                    );
                   },
-                  child: const Text('Simpan'),
                 ),
               ],
             ),
@@ -128,7 +137,7 @@ class _ContactPageState extends State<ContactPage> {
                     TextFormField(
                       controller: nameController,
                       decoration: InputDecoration(
-                        hintText: "Masukkan Nama Lengkap Anda",
+                        hintText: "Masukkan Nama Lengkap",
                         labelText: "Nama Lengkap",
                         icon: const Icon(
                           Icons.account_box_rounded,
@@ -152,7 +161,7 @@ class _ContactPageState extends State<ContactPage> {
                       keyboardType: TextInputType.phone,
                       controller: numberPhoneController,
                       decoration: InputDecoration(
-                        hintText: "Masukkan Nomor Telepon Anda",
+                        hintText: "Masukkan Nomor Telepon",
                         labelText: "Nomor Telepon",
                         icon: const Icon(
                           Icons.phone,
@@ -185,9 +194,15 @@ class _ContactPageState extends State<ContactPage> {
         return ListView.builder(
           itemCount: state.contacts.length,
           itemBuilder: (BuildContext context, int index) {
-            return Row(
-              children: [
-                Container(
+            return GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed(
+                  '/detail_contact',
+                  arguments: state.contacts[index],
+                );
+              },
+              child: ListTile(
+                leading: Container(
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
@@ -205,31 +220,20 @@ class _ContactPageState extends State<ContactPage> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  width: 30,
+                title: Text(
+                  state.contacts[index].name,
+                  style: const TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      state.contacts[index].name,
-                      style: const TextStyle(
-                        fontSize: 19,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      state.contacts[index].numberPhone,
-                      style: const TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ],
+                subtitle: Text(
+                  state.contacts[index].numberPhone,
+                  style: const TextStyle(
+                    fontSize: 15,
+                  ),
                 ),
-                const SizedBox(
-                  height: 70,
-                ),
-              ],
+              ),
             );
           },
         );

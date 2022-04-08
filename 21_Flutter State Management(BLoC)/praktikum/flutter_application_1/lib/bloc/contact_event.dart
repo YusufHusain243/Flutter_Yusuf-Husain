@@ -6,7 +6,12 @@ abstract class ContactEvent extends Equatable {
 }
 
 class AddContact extends ContactEvent {
+  final int id;
   final String name;
   final String phoneNumber;
-  AddContact(this.name, this.phoneNumber);
+  AddContact(
+    this.id,
+    this.name,
+    this.phoneNumber,
+  );
 }
