@@ -125,3 +125,7 @@ Universitas : Universitas Palangka Raya
    ```
 
 2. output
+
+
+https://user-images.githubusercontent.com/74952343/162423426-67df0214-1a94-41ca-bb45-9a2115ad44e4.mp4
+
