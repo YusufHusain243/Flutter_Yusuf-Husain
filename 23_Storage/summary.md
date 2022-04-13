@@ -1090,3 +1090,7 @@ class ContactBloc extends Bloc<ContactEvent, ContactState> {
 ```
 
 2. Hasil
+
+
+https://user-images.githubusercontent.com/74952343/163181990-09f3b91d-7d7d-43cc-82f4-eeb65f1ccd02.mp4
+
