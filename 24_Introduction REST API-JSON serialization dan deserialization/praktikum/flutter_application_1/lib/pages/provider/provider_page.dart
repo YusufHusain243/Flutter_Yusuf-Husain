@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/model/contact.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
+import 'package:flutter_application_1/pages/provider/detail_provider_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_1/provider/contact_provider.dart'
     as provider;
@@ -136,6 +137,16 @@ class _BodyState extends State<Body> {
                       itemCount: value.contacts.length,
                       itemBuilder: (BuildContext context, int index) {
                         return ListTile(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Detail(
+                                  id: value.contacts[index].id!.toInt(),
+                                ),
+                              ),
+                            );
+                          },
                           leading: Container(
                             decoration: const BoxDecoration(
                               borderRadius: BorderRadius.all(

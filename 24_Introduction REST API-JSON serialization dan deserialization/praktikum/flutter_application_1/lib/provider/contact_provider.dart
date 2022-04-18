@@ -41,8 +41,21 @@ class ContactProvider extends ChangeNotifier {
     if (response.statusCode == 200) {
       List<Contact>? contactList =
           response.data?.map((item) => Contact.fromJson(item)).toList();
-      return _contacts = contactList!;
+      _contacts = contactList!;
+      print(_contacts);
+      return _contacts;
     }
     return _contacts;
+  }
+
+  Future getContactId(int id) async {
+    final response = await api.get(
+      "https://my-json-server.typicode.com/hadihammurabi/flutter-webservice/contacts/$id",
+    );
+    if (response.statusCode == 200) {
+      final userdata2 = Contact.fromJson(response.data);
+      _contacts.add(Contact(
+          id: userdata2.id, name: userdata2.name, phone: userdata2.phone));
+    }
   }
 }
