@@ -16,7 +16,13 @@ Universitas : Universitas Palangka Raya
 2. Tambahkan sebuah halaman baru yang menggunakan ViewModel dari halaman lain!
 ## Jawaban
 1. program
+![add_contact](https://user-images.githubusercontent.com/74952343/164269172-76bc2dea-96c1-4eee-b9b1-669d041fa31a.png)
+![contact_api](https://user-images.githubusercontent.com/74952343/164269201-68d5a35d-89df-44d1-b9c0-5f95bb669656.png)
+![contact_model](https://user-images.githubusercontent.com/74952343/164269220-865c0226-de40-4308-9917-4e80ac837db7.png)
+![contact_screen](https://user-images.githubusercontent.com/74952343/164269263-0fdcaa38-7058-45e4-8fcd-97be76c6c328.png)
+![contact_view_model](https://user-images.githubusercontent.com/74952343/164269279-b57ac9f1-6be1-4e91-a736-d74cc60aab0e.png)
+![detail_contact_screen](https://user-images.githubusercontent.com/74952343/164269291-2e1510e1-04f8-43a0-bab2-d2872d6ea4a6.png)
+![main](https://user-images.githubusercontent.com/74952343/164269327-81ded5be-6e27-4485-b9bd-24b60ebe40ad.png)
 
 2. output
-
-
+https://user-images.githubusercontent.com/74952343/164269208-ac30476a-49e5-472a-a43f-130409ab4f64.mp4
