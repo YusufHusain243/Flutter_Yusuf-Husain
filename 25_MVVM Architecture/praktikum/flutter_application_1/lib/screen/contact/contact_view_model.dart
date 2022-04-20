@@ -9,6 +9,8 @@ class ContactViewModel with ChangeNotifier {
   Contact? _contactId;
   Contact? get contactId => _contactId;
 
+  String? status;
+
   getAllContacts() async {
     final c = await ContactAPI.getContact();
     _contacts = c;
@@ -21,8 +23,9 @@ class ContactViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<String> addContact(Contact contact) async {
+  addContact(Contact contact) async {
     final c = await ContactAPI.addContact(contact);
-    return c;
+    status = c;
+    notifyListeners();
   }
 }

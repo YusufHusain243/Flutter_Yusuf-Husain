@@ -86,7 +86,7 @@ class _AddContactState extends State<AddContact> {
                     ),
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {
-                        String status = await modelView.addContact(
+                        await modelView.addContact(
                           Contact(
                             id: 100,
                             name: nameController.toString(),
@@ -95,7 +95,7 @@ class _AddContactState extends State<AddContact> {
                         );
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text(status),
+                            content: Text(modelView.status.toString()),
                           ),
                         );
                         Navigator.pop(context);
