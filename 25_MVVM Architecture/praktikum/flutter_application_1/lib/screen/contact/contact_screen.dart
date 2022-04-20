@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screen/contact/add_contact_screen.dart';
 import 'package:flutter_application_1/screen/contact/contact_view_model.dart';
 import 'package:flutter_application_1/screen/contact/detail_contact_screen.dart';
 import 'package:provider/provider.dart';
@@ -26,27 +27,48 @@ class _ContactScreenState extends State<ContactScreen> {
       appBar: AppBar(
         title: const Text('contact'),
       ),
-      body: ListView.builder(
-        itemCount: modelView.contacts.length,
-        itemBuilder: (context, index) {
-          final contact = modelView.contacts[index];
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailContactScreen(
-                    id: contact.id,
+      body: Container(
+        child: ListView.builder(
+          itemCount: modelView.contacts.length,
+          itemBuilder: (context, index) {
+            final contact = modelView.contacts[index];
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailContactScreen(
+                      id: contact.id,
+                    ),
                   ),
-                ),
-              );
-            },
-            child: ListTile(
-              title: Text(contact.name),
-              subtitle: Text(contact.phone),
+                );
+              },
+              child: ListTile(
+                title: Text(contact.name),
+                subtitle: Text(contact.phone),
+              ),
+            );
+          },
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddContact(),
+                  ),
+                );
+              },
+              child: const Icon(Icons.add),
             ),
-          );
-        },
+          ],
+        ),
       ),
     );
   }

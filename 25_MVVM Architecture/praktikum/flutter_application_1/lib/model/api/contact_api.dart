@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_application_1/model/contact_model.dart';
 
@@ -24,5 +26,23 @@ class ContactAPI {
     }
 
     return null;
+  }
+
+  static Future<String> addContact(Contact contact) async {
+    var dataContact = jsonEncode(<String, dynamic>{
+      'id': contact.id,
+      'name': contact.name,
+      'phone': contact.phone,
+    });
+    final response = await Dio().post(
+      'https://my-json-server.typicode.com/hadihammurabi/flutter-webservice/contacts',
+      data: dataContact,
+    );
+
+    if (response.statusCode == 201) {
+      return 'Tambah Berhasil';
+    } else {
+      return 'Tambah Gagal';
+    }
   }
 }

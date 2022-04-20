@@ -20,4 +20,9 @@ class ContactViewModel with ChangeNotifier {
     _contactId = Contact(id: c!.id, name: c.name, phone: c.phone);
     notifyListeners();
   }
+
+  Future<String> addContact(Contact contact) async {
+    final c = await ContactAPI.addContact(contact);
+    return c;
+  }
 }
