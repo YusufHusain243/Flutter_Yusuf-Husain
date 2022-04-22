@@ -91,3 +91,11 @@ Universitas : Universitas Palangka Raya
        ```
 
 2. output
+
+
+https://user-images.githubusercontent.com/74952343/164582967-03731124-5b02-4bf8-a85a-c6020eba337f.mp4
+
+
+
+https://user-images.githubusercontent.com/74952343/164582981-b8725729-b26d-466b-aa48-3dc92a2744e2.mp4
+
