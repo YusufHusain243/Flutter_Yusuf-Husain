@@ -18,7 +18,6 @@ Universitas : Universitas Palangka Raya
    - MVVM foods
      - struktur_file
          ![struktur_file](https://user-images.githubusercontent.com/74952343/164582171-70c3548b-10b2-4f59-ac2f-ee4b93f731fd.jpeg)
-
      - food_api
          ![food_api](https://user-images.githubusercontent.com/74952343/164581954-f5073e4d-b1e2-4982-af2e-fb6398828c45.png)
          
