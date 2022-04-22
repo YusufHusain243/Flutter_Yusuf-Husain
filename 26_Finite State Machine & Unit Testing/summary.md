@@ -6,9 +6,13 @@ Email : yusufhusain243@gmail.com <br>
 Universitas : Universitas Palangka Raya
 
 ## Resume Finite State Machine & Unit Testing
+1. Finite state machine adalah mesin yang memiliki sejumlah state. tiap state menunjukkan apa yang terjadi sebelumnya. terdapat 3 state yang menunjukkan kejadian dalam suatu proses. IDDLE saat tidak terjadi proses, RUNNING saat proses sedang berjalan, dan ERROR saat proses gagal diselesaikan
+
+2. Unit Test adalah salah satu jenis pengujian pada perangkat lunak. pengujian dilakukan pada unit dalam perangkat lunak. unit yang dimasud umumnya adalah fungsi dan method. tujuan dari unit test adalah memastikan fungsi dapat mengolah berbagai jenis input. memastikan hasil dari suatu fungsi atau method sudah sesuai. menjadi dokumentasi.
+
+3. mocking adalah proses yang terikat dengan sistem eksternal dapat mempengaruhi berjalannya pengujian. pengaruh tersebut dapat mengganggu proses pengujian. dilakukan mocking untuk menghindari masalah masalah tersebut
 
 ## Task
-
 1. buatlah sebuah halaman baru dengan MVVM lengkap untuk menampilkan data dari : https://my-json-server.typicode.com/hadihammurabi/flutter-webservice/foods
 2. dari MVVM diatas, lakukan unit test pada model api dengan menerapkan mocking
 
