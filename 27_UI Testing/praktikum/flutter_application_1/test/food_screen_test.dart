@@ -1,41 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screen/food/detail_food_screen.dart';
 import 'package:flutter_application_1/screen/food/food_screen.dart';
+import 'package:flutter_application_1/screen/food/food_view_model.dart';
 import 'package:flutter_application_1/screen/main_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  testWidgets('test food screen', (WidgetTester tester) async {
+  testWidgets('test main screen', (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(
-      home: FoodScreen(),
+      home: MainScreen(),
     ));
 
-    expect(find.text('data'), findsOneWidget);
+    expect(find.byKey(const Key('food_button')), findsOneWidget);
+    await tester.tap(find.byKey(const Key('food_button')));
   });
 
-//   testWidgets('[Provider] Update when the value changes', (tester) async {
-//     final _providerKey = GlobalKey();
-//     final _childKey = GlobalKey();
-//     BuildContext context;
-//     await tester.pumpWidget(StreamProvider(
-//       key: _providerKey,
-//       builder: (c) {
-//         context = c;
-//         return _controller.stream;
-//       },
-//       child: Container(key: _childKey),
-//     ));
-// // Check the context test...
-//     expect(context, equals(_providerKey.currentContext));
-// // Check the model test (if null)...
-//     expect(Provider.of<Location>(_childKey.currentContext), null);
-//     _controller.add(Location(city: 'London'));
-// // Delay the pump...
-//     await Future.microtask(tester.pump);
-// // Check if the model passed (with some value) is the same as received...
-//     expect(
-//       Provider.of<Location>(_childKey.currentContext).toJson(),
-//       _locationModel.toJson(),
-//     );
-//     await _controller.close();
-//   });
+  testWidgets('test error', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(
+      home: MainScreen(),
+    ));
+
+    expect(find.byKey(const Key('food_button')), findsNothing);
+  });
+
+  testWidgets('test food screen', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (_) => FoodViewModel(),
+          ),
+        ],
+        child: const MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: FoodScreen(),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle(const Duration(seconds: 5));
+    expect(find.byKey(const Key('title_app_food')), findsOneWidget);
+  });
+
+  testWidgets('test detail food screen', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (_) => FoodViewModel(),
+          ),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: DetailFoodScreen(
+            id: 1,
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle(const Duration(seconds: 1));
+    expect(find.byKey(const Key('title_app_detail')), findsOneWidget);
+  });
 }

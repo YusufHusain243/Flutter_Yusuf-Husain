@@ -28,6 +28,7 @@ class MainScreen extends StatelessWidget {
               width: 20,
             ),
             ElevatedButton(
+              key: const Key('food_button'),
               onPressed: () {
                 Navigator.push(
                   context,

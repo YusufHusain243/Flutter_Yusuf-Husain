@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screen/food/detail_food_screen.dart';
 import 'package:flutter_application_1/screen/food/food_view_model.dart';
 import 'package:flutter_application_1/screen/food/food_view_state.dart';
 import 'package:provider/provider.dart';
@@ -11,14 +12,14 @@ class FoodScreen extends StatefulWidget {
 }
 
 class _FoodScreenState extends State<FoodScreen> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
-  //     var viewModel = Provider.of<FoodViewModel>(context, listen: false);
-  //     await viewModel.getAllFood();
-  //   });
-  // }
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
+      var viewModel = Provider.of<FoodViewModel>(context, listen: false);
+      await viewModel.getAllFood();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,7 @@ class _FoodScreenState extends State<FoodScreen> {
       appBar: AppBar(
         title: const Text(
           'Food',
+          key: Key('title_app_food'),
         ),
       ),
       body: Consumer<FoodViewModel>(
@@ -44,7 +46,22 @@ class _FoodScreenState extends State<FoodScreen> {
                 return GestureDetector(
                   onTap: () {},
                   child: ListTile(
-                    title: Text(food.name),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailFoodScreen(
+                            id: food.id,
+                          ),
+                        ),
+                      );
+                    },
+                    title: Text(
+                      food.name,
+                      key: const Key(
+                        'list_food',
+                      ),
+                    ),
                   ),
                 );
               },

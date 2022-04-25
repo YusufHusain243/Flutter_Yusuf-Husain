@@ -16,4 +16,18 @@ class FoodAPI {
     }
     return [];
   }
+
+  static Future<Food?> getFoodId(int id) async {
+    print(id);
+    final response = await Dio().get(
+      'https://my-json-server.typicode.com/hadihammurabi/flutter-webservice/foods/$id',
+    );
+
+    if (response.statusCode == 200) {
+      Food listData = Food.fromJson(response.data);
+      return listData;
+    }
+
+    return null;
+  }
 }

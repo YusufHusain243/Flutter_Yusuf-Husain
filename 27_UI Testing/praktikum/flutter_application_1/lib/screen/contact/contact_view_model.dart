@@ -14,7 +14,6 @@ class ContactViewModel with ChangeNotifier {
   Contact get contactId => _contactId;
 
   String? status;
-  // ContactAPI contactAPI = new ContactAPI();
 
   ChangeState(ContactViewState s) {
     _state = s;

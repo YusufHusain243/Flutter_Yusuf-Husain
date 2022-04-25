@@ -10,6 +10,9 @@ class FoodViewModel with ChangeNotifier {
   List<Food> _foods = [];
   List<Food> get foods => _foods;
 
+  Food _foodId = Food(id: 4, name: 'name');
+  Food get foodId => _foodId;
+
   FoodAPI foodAPI = new FoodAPI();
 
   ChangeState(FoodViewState s) {
@@ -22,6 +25,18 @@ class FoodViewModel with ChangeNotifier {
     try {
       final f = await foodAPI.getFood();
       _foods = f;
+      notifyListeners();
+      ChangeState(FoodViewState.none);
+    } catch (e) {
+      ChangeState(FoodViewState.error);
+    }
+  }
+
+  getFoodId(int id) async {
+    ChangeState(FoodViewState.loading);
+    try {
+      final f = await FoodAPI.getFoodId(id);
+      _foodId = f!;
       notifyListeners();
       ChangeState(FoodViewState.none);
     } catch (e) {
