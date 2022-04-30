@@ -1,15 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/model/projects_model.dart';
 import 'package:flutter_application_1/screen/detailProject/detail_project_screen.dart';
+import 'package:flutter_application_1/screen/home/home_view_model.dart';
+import 'package:flutter_application_1/screen/home/home_view_state.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
+
+import '../../model/users_model.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  User user;
+  HomeScreen({Key? key, required this.user}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  var formKeyCreate = GlobalKey<FormState>();
+  var nameProjectController = TextEditingController();
+  var codeProjectController = TextEditingController();
+
+  var formKeyJoin = GlobalKey<FormState>();
+  var joinCodeController = TextEditingController();
+
+  @override
+  void dispose() {
+    nameProjectController.dispose();
+    codeProjectController.dispose();
+    joinCodeController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
+      var viewModel = Provider.of<HomeViewModel>(context, listen: false);
+      await viewModel.getProjects(widget.user.id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,15 +49,71 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           title: const Text('Team Works Application'),
           centerTitle: true,
-          backgroundColor: Colors.blue,
-          automaticallyImplyLeading: false,
+          backgroundColor: const Color.fromARGB(255, 59, 99, 128),
+        ),
+        drawer: Drawer(
+          child: Column(
+            children: [
+              Container(
+                color: const Color.fromARGB(255, 55, 129, 182),
+                padding: const EdgeInsets.all(40),
+                child: Image.asset(
+                  'assets/logo.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  color: const Color.fromARGB(255, 59, 99, 128),
+                  child: ListView(
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      ListTile(
+                        onTap: () {},
+                        iconColor: Colors.white,
+                        textColor: Colors.white,
+                        leading: const Icon(
+                          Icons.restore,
+                          size: 30,
+                        ),
+                        title: const Text(
+                          'Reset Password',
+                          style: TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                      ListTile(
+                        onTap: () {},
+                        iconColor: Colors.white,
+                        textColor: Colors.white,
+                        leading: const Icon(
+                          Icons.logout,
+                          size: 27,
+                        ),
+                        title: const Text(
+                          'Logout',
+                          style: TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         body: Column(
           children: [
             Container(
               padding: const EdgeInsets.all(30),
               width: double.infinity,
-              color: Colors.blue,
+              color: const Color.fromARGB(255, 59, 99, 128),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -95,26 +183,59 @@ class _HomeScreenState extends State<HomeScreen> {
                                           fontSize: 20,
                                         ),
                                       ),
-                                      TextButton(
-                                        onPressed: () {},
-                                        child: const Text(
-                                          'Save',
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                      )
+                                      Consumer<HomeViewModel>(
+                                        builder: (build, value, child) {
+                                          return TextButton(
+                                            onPressed: () async {
+                                              Navigator.of(context).pop();
+                                              if (formKeyCreate.currentState!
+                                                  .validate()) {
+                                                await value.createProject(
+                                                  Project(
+                                                    id: 0,
+                                                    userId: widget.user.id,
+                                                    nameProject:
+                                                        nameProjectController
+                                                            .text
+                                                            .toString(),
+                                                    codeProject:
+                                                        codeProjectController
+                                                            .text
+                                                            .toString(),
+                                                  ),
+                                                );
+
+                                                if (value.state ==
+                                                    HomeViewState.success) {
+                                                  nameProjectController.clear();
+                                                  codeProjectController.clear();
+                                                  value.getProjects(
+                                                      widget.user.id);
+                                                }
+                                              }
+                                            },
+                                            child: const Text(
+                                              'Create',
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
                                     ],
                                   ),
                                   const SizedBox(
                                     height: 20,
                                   ),
                                   Form(
+                                    key: formKeyCreate,
                                     child: Padding(
                                       padding: const EdgeInsets.all(10),
                                       child: Column(
                                         children: [
                                           TextFormField(
+                                            controller: nameProjectController,
                                             decoration: InputDecoration(
                                               hintText: "Input Project Name",
                                               labelText: "Project Name",
@@ -134,7 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             height: 20,
                                           ),
                                           TextFormField(
-                                            keyboardType: TextInputType.phone,
+                                            controller: codeProjectController,
                                             decoration: InputDecoration(
                                               hintText: "Input Code Project",
                                               labelText: "Code Project",
@@ -171,17 +292,19 @@ class _HomeScreenState extends State<HomeScreen> {
                             builder: (BuildContext context) => AlertDialog(
                               title: const Text('Join Project'),
                               content: Form(
+                                key: formKeyJoin,
                                 child: TextFormField(
+                                  controller: joinCodeController,
                                   decoration: InputDecoration(
-                                    hintText: "Input Code Name",
-                                    labelText: "Code Name",
+                                    hintText: "Input Code Project",
+                                    labelText: "Code Project",
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(5.0),
                                     ),
                                   ),
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "Code Name Can't Be Empty!";
+                                      return "Code Project Can't Be Empty!";
                                     }
                                     return null;
                                   },
@@ -192,9 +315,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                   onPressed: () => Navigator.pop(context),
                                   child: const Text('Cancel'),
                                 ),
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const Text('Join'),
+                                Consumer<HomeViewModel>(
+                                  builder: (build, value, child) {
+                                    return TextButton(
+                                      onPressed: () async {
+                                        if (formKeyJoin.currentState!
+                                            .validate()) {
+                                          Navigator.of(context).pop();
+                                          await value.joinProject(
+                                            joinCodeController.text,
+                                            widget.user.id,
+                                          );
+
+                                          if (value.state ==
+                                              HomeViewState.success) {
+                                            value.getProjects(widget.user.id);
+                                          }
+                                        }
+                                      },
+                                      child: const Text('Join'),
+                                    );
+                                  },
                                 ),
                               ],
                             ),
@@ -208,57 +349,121 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Expanded(
-              child: ListView.separated(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Slidable(
-                    closeOnScroll: true,
-                    endActionPane: ActionPane(
-                      motion: const ScrollMotion(),
-                      children: [
-                        SlidableAction(
-                          onPressed: doNothing,
-                          backgroundColor: const Color.fromRGBO(255, 0, 0, 1),
-                          foregroundColor: Colors.white,
-                          icon: Icons.delete,
-                          label: 'Delete',
-                        ),
-                        SlidableAction(
-                          onPressed: doNothing,
-                          backgroundColor:
-                              const Color.fromARGB(255, 255, 217, 0),
-                          foregroundColor: Colors.black,
-                          icon: Icons.edit,
-                          label: 'Edit',
-                        ),
-                      ],
-                    ),
-                    child: ListTile(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const DetailProjectScreen(),
+              child: Consumer<HomeViewModel>(
+                builder: (context, value, child) {
+                  if (value.state == HomeViewState.loading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+
+                  if (value.state == HomeViewState.success) {
+                    return ListView.separated(
+                      itemCount: value.projects.length,
+                      itemBuilder: (context, index) {
+                        return Slidable(
+                          closeOnScroll: true,
+                          endActionPane: ActionPane(
+                            motion: const ScrollMotion(),
+                            children: [
+                              SlidableAction(
+                                onPressed: (BuildContext context) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        AlertDialog(
+                                      title: const Text('Delete Project'),
+                                      content: const Text('Are you sure?'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          child: const Text('Cancel'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () async {
+                                            Navigator.of(context).pop();
+                                            await value.deleteProject(
+                                              value.projects[index].id,
+                                            );
+
+                                            if (value.state ==
+                                                HomeViewState.success) {
+                                              value.getProjects(widget.user.id);
+                                            }
+                                          },
+                                          child: const Text('Yes'),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                backgroundColor:
+                                    const Color.fromRGBO(255, 0, 0, 1),
+                                foregroundColor: Colors.white,
+                                icon: Icons.delete,
+                                label: 'Delete',
+                              ),
+                              SlidableAction(
+                                onPressed: (BuildContext context) {
+                                  Clipboard.setData(
+                                    ClipboardData(
+                                      text: value.projects[index].codeProject
+                                          .toString(),
+                                    ),
+                                  ).then((_) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text(
+                                          "Code project copied to clipboard",
+                                        ),
+                                      ),
+                                    );
+                                  });
+                                },
+                                backgroundColor:
+                                    const Color.fromRGBO(143, 143, 143, 1),
+                                foregroundColor:
+                                    const Color.fromARGB(255, 255, 255, 255),
+                                icon: Icons.copy,
+                                label: 'Copy',
+                              ),
+                            ],
+                          ),
+                          child: ListTile(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DetailProjectScreen(
+                                      idProject: value.projects[index].id),
+                                ),
+                              );
+                            },
+                            selected: true,
+                            selectedTileColor:
+                                const Color.fromARGB(255, 243, 243, 243),
+                            shape: const Border(bottom: BorderSide(width: 1)),
+                            title: Text(
+                              value.projects[index].nameProject.toString(),
+                              style: const TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                            visualDensity: const VisualDensity(vertical: 4),
                           ),
                         );
                       },
-                      selected: true,
-                      selectedTileColor:
-                          const Color.fromARGB(255, 243, 243, 243),
-                      shape: const Border(bottom: BorderSide(width: 1)),
-                      title: const Text(
-                        'Slide me',
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 3,
                       ),
-                      visualDensity: const VisualDensity(vertical: 4),
-                    ),
+                    );
+                  }
+
+                  return const Center(
+                    child: Text('Get Data Failed!'),
                   );
                 },
-                separatorBuilder: (context, index) => const SizedBox(
-                  height: 3,
-                ),
               ),
             ),
           ],
@@ -266,6 +471,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  void doNothing(BuildContext context) {}
 }

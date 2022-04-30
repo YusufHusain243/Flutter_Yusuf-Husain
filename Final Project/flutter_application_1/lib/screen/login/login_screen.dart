@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter_application_1/model/users_model.dart';
 import 'package:flutter_application_1/screen/home/home_screen.dart';
+import 'package:flutter_application_1/screen/login/login_view_model.dart';
 import 'package:flutter_application_1/screen/register/register_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -25,13 +27,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final registerViewModel = Provider.of<RegisterViewModel>(context);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Team Works Application'),
           centerTitle: true,
-          backgroundColor: Colors.blue,
+          backgroundColor: const Color.fromARGB(255, 59, 99, 128),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -47,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 40,
               ),
-              Consumer(
+              Consumer<LoginViewModel>(
                 builder: (context, value, child) {
                   return Form(
                     key: formKey,
@@ -108,28 +109,95 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                   );
                                 },
-                                child: const Text('Register!'),
+                                child: const Text(
+                                  'Register!',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 59, 99, 128),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.blue,
+                              primary: const Color.fromARGB(255, 59, 99, 128),
                               minimumSize: const Size.fromHeight(50),
                             ),
-                            onPressed: () {
+                            onPressed: () async {
                               if (formKey.currentState!.validate()) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HomeScreen(),
+                                showDialog<void>(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  builder: (BuildContext context) {
+                                    return const AlertDialog(
+                                      content: Text('Login...'),
+                                    );
+                                  },
+                                );
+                                bool result = await value.login(
+                                  User(
+                                    id: 1,
+                                    email: emailController.text.toString(),
+                                    password:
+                                        passwordController.text.toString(),
+                                    username: '',
                                   ),
                                 );
+
+                                if (result == true) {
+                                  Navigator.of(context).pop();
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomeScreen(
+                                        user: value.user,
+                                      ),
+                                    ),
+                                  );
+                                  showDialog<void>(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text(value.status.toString()),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            child: const Text('Close'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+
+                                if (result == false) {
+                                  Navigator.of(context).pop();
+                                  showDialog<void>(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text(value.status.toString()),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            child: const Text('Close'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
                               }
                             },
                             child: const Text(
                               'Login',
-                              style: TextStyle(fontSize: 24),
+                              style: TextStyle(fontSize: 20),
                             ),
                           ),
                         ],

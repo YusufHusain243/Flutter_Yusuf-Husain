@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter_application_1/model/users_model.dart';
 import 'package:flutter_application_1/screen/register/register_view_model.dart';
 import 'package:flutter_application_1/screen/register/register_view_state.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         appBar: AppBar(
           title: const Text('Team Works Application'),
           centerTitle: true,
-          backgroundColor: Colors.blue,
+          backgroundColor: const Color.fromARGB(255, 59, 99, 128),
           automaticallyImplyLeading: false,
         ),
         body: SingleChildScrollView(
@@ -121,39 +122,78 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.blue,
+                              primary: const Color.fromARGB(255, 59, 99, 128),
                               minimumSize: const Size.fromHeight(50),
                             ),
-                            onPressed: () {
+                            onPressed: () async {
                               if (formKey.currentState!.validate()) {
-                                value.register();
-                                print(value.state);
-
-                                showDialog<String>(
+                                showDialog<void>(
                                   context: context,
+                                  barrierDismissible: false,
                                   builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      content: Row(
-                                        children: [
-                                          const CircularProgressIndicator(),
-                                          Container(
-                                            margin: const EdgeInsets.only(
-                                              left: 20,
-                                            ),
-                                            child: const Text(
-                                              "Registering...",
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                    return const AlertDialog(
+                                      content: Text('Registering...'),
                                     );
                                   },
                                 );
+                                bool result = await value.register(
+                                  User(
+                                    id: 1,
+                                    email: emailController.text.toString(),
+                                    password:
+                                        passwordController.text.toString(),
+                                    username:
+                                        usernameController.text.toString(),
+                                  ),
+                                );
+
+                                if (result == true) {
+                                  Navigator.of(context).pop();
+                                  Navigator.pop(context);
+                                  showDialog<void>(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text(value.status.toString()),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            child: const Text('Close'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+
+                                if (result == false) {
+                                  Navigator.of(context).pop();
+                                  showDialog<void>(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text(value.status.toString()),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            child: const Text('Close'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
                               }
                             },
                             child: const Text(
                               'Register',
-                              style: TextStyle(fontSize: 24),
+                              style: TextStyle(fontSize: 20),
                             ),
                           ),
                         ],

@@ -14,14 +14,13 @@ class Project {
   factory Project.fromJson(Map<String, dynamic> json) {
     return Project(
       id: json['id'],
-      userId: json['userId'],
-      nameProject: json['nameProject'],
-      codeProject: json['codeProject'],
+      userId: json['user_id'],
+      nameProject: json['name_project'],
+      codeProject: json['code_project'],
     );
   }
 
   static Map<String, dynamic> toJson(Project project) => {
-        'id': project.id,
         'userId': project.userId,
         'nameProject': project.nameProject,
         'codeProject': project.codeProject,
