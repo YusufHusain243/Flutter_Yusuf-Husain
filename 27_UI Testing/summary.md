@@ -19,3 +19,6 @@ Universitas : Universitas Palangka Raya
 2. lakukan test pada halaman yang belum dibuat
 
 ## Pembahasan
+![test](https://user-images.githubusercontent.com/74952343/165110120-8ed34b60-b142-467c-bd3e-42151de18004.png)
+![error_test](https://user-images.githubusercontent.com/74952343/165110138-cac2f47f-8b2b-4fda-8236-721777de43bd.png)
+![hasil test](https://user-images.githubusercontent.com/74952343/165110181-fcd37783-0d01-4399-bf0e-e2e4f3ec5424.jpeg)
