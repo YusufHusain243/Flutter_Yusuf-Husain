@@ -155,7 +155,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     barrierDismissible: false,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-                                        title: Text(value.status.toString()),
+                                        title: const Text('Register Succes'),
                                         actions: <Widget>[
                                           TextButton(
                                             child: const Text('Close'),
@@ -176,7 +176,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     barrierDismissible: false,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-                                        title: Text(value.status.toString()),
+                                        title: const Text('Register Failed'),
                                         actions: <Widget>[
                                           TextButton(
                                             child: const Text('Close'),

@@ -11,7 +11,7 @@ class DetailProjectAPI {
     if (response.statusCode == 200) {
       List<DetailProject> projects = (response.data as List).map((e) {
         var status;
-        if (e['status'] == 1) {
+        if (e['status'] == '1') {
           status = true;
         } else {
           status = false;
@@ -23,8 +23,6 @@ class DetailProjectAPI {
           status: status,
         );
       }).toList();
-
-      print(projects[1].status);
       return projects;
     }
     return [];

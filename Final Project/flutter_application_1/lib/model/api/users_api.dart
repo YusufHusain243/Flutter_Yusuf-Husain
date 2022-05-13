@@ -5,12 +5,12 @@ import 'package:flutter_application_1/model/users_model.dart';
 
 class UserAPI {
   Future<String> regis(User user) async {
-    print(user);
     var dataRegis = jsonEncode(<String, dynamic>{
       'email': user.email,
       'password': user.password,
       'username': user.username,
     });
+    print(dataRegis);
     final response = await Dio().post(
       "https://yusuf.bentenserver.my.id/public/api/users/registration",
       data: dataRegis,

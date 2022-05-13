@@ -235,54 +235,64 @@ class _DetailProjectScreenState extends State<DetailProjectScreen> {
                                   color: Color.fromARGB(255, 0, 140, 255),
                                 ),
                               ),
-                              title: Text(value.detailProjects[index].status
-                                  .toString()),
-                              // title: Text(widget.idProject.toString()),
+                              title: Text(
+                                  value.detailProjects[index].name.toString()),
                               value: value.detailProjects[index].status,
                               onChanged: (val) async {
+                                showDialog<void>(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  builder: (BuildContext context) {
+                                    return const AlertDialog(
+                                      content: Text('Update Status...'),
+                                    );
+                                  },
+                                );
                                 bool result = await value.updateDetailProject(
                                   value.detailProjects[index].id.toInt(),
                                   val!,
                                 );
-                                // print(result);
-                                // if (result = true) {
-                                //   value.getDetailProjects(widget.idProject);
-                                //   showDialog<void>(
-                                //     context: context,
-                                //     barrierDismissible: false,
-                                //     builder: (BuildContext context) {
-                                //       return AlertDialog(
-                                //         title: const Text('Update Success'),
-                                //         actions: <Widget>[
-                                //           TextButton(
-                                //             child: const Text('Close'),
-                                //             onPressed: () {
-                                //               Navigator.of(context).pop();
-                                //             },
-                                //           ),
-                                //         ],
-                                //       );
-                                //     },
-                                //   );
-                                // }
-                                // value.getDetailProjects(widget.idProject);
-                                // showDialog<void>(
-                                //   context: context,
-                                //   barrierDismissible: false,
-                                //   builder: (BuildContext context) {
-                                //     return AlertDialog(
-                                //       title: const Text('Update Failed'),
-                                //       actions: <Widget>[
-                                //         TextButton(
-                                //           child: const Text('Close'),
-                                //           onPressed: () {
-                                //             Navigator.of(context).pop();
-                                //           },
-                                //         ),
-                                //       ],
-                                //     );
-                                //   },
-                                // );
+                                if (result = true) {
+                                  Navigator.of(context).pop();
+                                  value.getDetailProjects(widget.idProject);
+                                  showDialog<void>(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text('Update Success'),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            child: const Text('Close'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                } else {
+                                  Navigator.of(context).pop();
+                                  value.getDetailProjects(widget.idProject);
+                                  showDialog<void>(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text('Update Failed'),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            child: const Text('Close'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
                               },
                             ),
                           );

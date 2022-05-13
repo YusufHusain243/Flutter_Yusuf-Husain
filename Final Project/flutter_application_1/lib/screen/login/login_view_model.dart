@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/model/api/users_api.dart';
 import 'package:flutter_application_1/model/users_model.dart';
@@ -14,9 +12,7 @@ class LoginViewModel with ChangeNotifier {
   Future<bool> login(User user) async {
     try {
       final u = await UserAPI().login(user);
-      // print(u['status']);
       if (u['status'] = true) {
-        print('true');
         _status = 'Login Success';
         _user = User(
           id: u['data']['id'],
@@ -27,7 +23,6 @@ class LoginViewModel with ChangeNotifier {
         notifyListeners();
         return true;
       } else {
-        print('false');
         _status = 'Login Failed';
         notifyListeners();
         return false;
