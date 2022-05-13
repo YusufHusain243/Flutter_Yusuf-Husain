@@ -3,6 +3,8 @@ import 'package:flutter_application_1/model/projects_model.dart';
 import 'package:flutter_application_1/screen/detailProject/detail_project_screen.dart';
 import 'package:flutter_application_1/screen/home/home_view_model.dart';
 import 'package:flutter_application_1/screen/home/home_view_state.dart';
+import 'package:flutter_application_1/screen/login/login_screen.dart';
+import 'package:flutter_application_1/screen/resetPassword/reset_password_screen.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
@@ -72,7 +74,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 10,
                       ),
                       ListTile(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  ResetPassword(id: widget.user.id),
+                            ),
+                          );
+                        },
                         iconColor: Colors.white,
                         textColor: Colors.white,
                         leading: const Icon(
@@ -87,7 +97,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       ListTile(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LoginScreen(),
+                            ),
+                          );
+                        },
                         iconColor: Colors.white,
                         textColor: Colors.white,
                         leading: const Icon(
@@ -436,7 +453,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => DetailProjectScreen(
-                                      idProject: value.projects[index].id),
+                                    idProject: value.projects[index].id,
+                                    idUser: widget.user.id,
+                                  ),
                                 ),
                               );
                             },

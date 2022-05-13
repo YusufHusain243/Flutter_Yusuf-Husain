@@ -143,7 +143,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                     username: '',
                                   ),
                                 );
-
                                 if (result == true) {
                                   Navigator.of(context).pop();
                                   Navigator.push(

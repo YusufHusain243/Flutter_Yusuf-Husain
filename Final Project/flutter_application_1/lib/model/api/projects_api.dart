@@ -57,14 +57,10 @@ class ProjectAPI {
       'code_project': codeProject,
     });
 
-    print(dataProject);
-
     final response = await Dio().post(
       'https://yusuf.bentenserver.my.id/public/api/project/join',
       data: dataProject,
     );
-
-    print(response.data);
 
     if (response.statusCode == 200) {
       return response.data['status'];

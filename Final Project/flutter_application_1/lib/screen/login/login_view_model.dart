@@ -14,7 +14,9 @@ class LoginViewModel with ChangeNotifier {
   Future<bool> login(User user) async {
     try {
       final u = await UserAPI().login(user);
-      if (u['status'] == true) {
+      // print(u['status']);
+      if (u['status'] = true) {
+        print('true');
         _status = 'Login Success';
         _user = User(
           id: u['data']['id'],
@@ -22,8 +24,10 @@ class LoginViewModel with ChangeNotifier {
           email: u['data']['email'],
           password: u['data']['password'],
         );
+        notifyListeners();
         return true;
       } else {
+        print('false');
         _status = 'Login Failed';
         notifyListeners();
         return false;

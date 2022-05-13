@@ -1,29 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/model/detail_project.dart';
+import 'package:flutter_application_1/screen/detailProject/detail_project_view_model.dart';
+import 'package:flutter_application_1/screen/detailProject/detail_project_view_state.dart';
+import 'package:flutter_application_1/screen/login/login_screen.dart';
+import 'package:flutter_application_1/screen/resetPassword/reset_password_screen.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
 
 class DetailProjectScreen extends StatefulWidget {
   int idProject;
-  DetailProjectScreen({Key? key, required this.idProject}) : super(key: key);
+  int idUser;
+  DetailProjectScreen({Key? key, required this.idProject, required this.idUser})
+      : super(key: key);
 
   @override
   State<DetailProjectScreen> createState() => _DetailProjectScreenState();
 }
 
 class _DetailProjectScreenState extends State<DetailProjectScreen> {
-  final List<String> _texts = [
-    "InduceSmile.com",
-    "Flutter.io",
-    "google.com",
-    "youtube.com",
-    "yahoo.com",
-    "gmail.com"
-  ];
+  var formKey = GlobalKey<FormState>();
+  var itemProjectController = TextEditingController();
 
-  List<bool> _isChecked = [];
+  @override
+  void dispose() {
+    itemProjectController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
     super.initState();
-    _isChecked = List<bool>.filled(_texts.length, false);
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
+      var viewModel =
+          Provider.of<DetailProjectViewModel>(context, listen: false);
+      await viewModel.getDetailProjects(widget.idProject);
+    });
   }
 
   @override
@@ -56,7 +67,16 @@ class _DetailProjectScreenState extends State<DetailProjectScreen> {
                         height: 10,
                       ),
                       ListTile(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ResetPassword(
+                                id: widget.idUser,
+                              ),
+                            ),
+                          );
+                        },
                         iconColor: Colors.white,
                         textColor: Colors.white,
                         leading: const Icon(
@@ -71,7 +91,14 @@ class _DetailProjectScreenState extends State<DetailProjectScreen> {
                         ),
                       ),
                       ListTile(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LoginScreen(),
+                            ),
+                          );
+                        },
                         iconColor: Colors.white,
                         textColor: Colors.white,
                         leading: const Icon(
@@ -131,43 +158,205 @@ class _DetailProjectScreenState extends State<DetailProjectScreen> {
               ),
             ),
             Expanded(
-              child: Stack(
-                alignment: AlignmentDirectional.bottomEnd,
-                children: [
-                  ListView.builder(
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return CheckboxListTile(
-                        visualDensity: const VisualDensity(
-                          vertical: 2,
-                        ),
-                        shape: const Border(
-                          bottom: BorderSide(
-                            width: 1,
-                            color: Color.fromARGB(255, 0, 140, 255),
-                          ),
-                        ),
-                        title: const Text('Website Dinas Kesehatan'),
-                        value: _isChecked[index],
-                        onChanged: (val) {
-                          setState(
-                            () {
-                              _isChecked[index] = val!;
-                            },
+              child: Consumer<DetailProjectViewModel>(
+                builder: (build, value, child) {
+                  if (value.state == DetailProjectViewState.loading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+
+                  if (value.state == DetailProjectViewState.error) {
+                    return const Center(
+                      child: Text('Get Data Failed'),
+                    );
+                  }
+
+                  return Stack(
+                    alignment: AlignmentDirectional.bottomEnd,
+                    children: [
+                      ListView.builder(
+                        itemCount: value.detailProjects.length,
+                        itemBuilder: (context, index) {
+                          // return Text(value.detailProjects[index].name);
+                          return Slidable(
+                            closeOnScroll: true,
+                            endActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  onPressed: (BuildContext context) {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          AlertDialog(
+                                        title: const Text('Delete Project'),
+                                        content: const Text('Are you sure?'),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            onPressed: () =>
+                                                Navigator.pop(context),
+                                            child: const Text('Cancel'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () async {
+                                              Navigator.of(context).pop();
+                                              bool result = await value
+                                                  .deleteDetailProject(
+                                                value.detailProjects[index].id,
+                                              );
+
+                                              if (result == true) {
+                                                value.getDetailProjects(
+                                                    widget.idProject);
+                                              }
+                                            },
+                                            child: const Text('Yes'),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  backgroundColor:
+                                      const Color.fromRGBO(255, 0, 0, 1),
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.delete,
+                                  label: 'Delete',
+                                ),
+                              ],
+                            ),
+                            child: CheckboxListTile(
+                              visualDensity: const VisualDensity(
+                                vertical: 2,
+                              ),
+                              shape: const Border(
+                                bottom: BorderSide(
+                                  width: 1,
+                                  color: Color.fromARGB(255, 0, 140, 255),
+                                ),
+                              ),
+                              title: Text(value.detailProjects[index].status
+                                  .toString()),
+                              // title: Text(widget.idProject.toString()),
+                              value: value.detailProjects[index].status,
+                              onChanged: (val) async {
+                                bool result = await value.updateDetailProject(
+                                  value.detailProjects[index].id.toInt(),
+                                  val!,
+                                );
+                                // print(result);
+                                // if (result = true) {
+                                //   value.getDetailProjects(widget.idProject);
+                                //   showDialog<void>(
+                                //     context: context,
+                                //     barrierDismissible: false,
+                                //     builder: (BuildContext context) {
+                                //       return AlertDialog(
+                                //         title: const Text('Update Success'),
+                                //         actions: <Widget>[
+                                //           TextButton(
+                                //             child: const Text('Close'),
+                                //             onPressed: () {
+                                //               Navigator.of(context).pop();
+                                //             },
+                                //           ),
+                                //         ],
+                                //       );
+                                //     },
+                                //   );
+                                // }
+                                // value.getDetailProjects(widget.idProject);
+                                // showDialog<void>(
+                                //   context: context,
+                                //   barrierDismissible: false,
+                                //   builder: (BuildContext context) {
+                                //     return AlertDialog(
+                                //       title: const Text('Update Failed'),
+                                //       actions: <Widget>[
+                                //         TextButton(
+                                //           child: const Text('Close'),
+                                //           onPressed: () {
+                                //             Navigator.of(context).pop();
+                                //           },
+                                //         ),
+                                //       ],
+                                //     );
+                                //   },
+                                // );
+                              },
+                            ),
                           );
                         },
-                      );
-                    },
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: FloatingActionButton(
-                      backgroundColor: const Color.fromARGB(255, 59, 99, 128),
-                      onPressed: () {},
-                      child: const Icon(Icons.add),
-                    ),
-                  ),
-                ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: FloatingActionButton(
+                          backgroundColor:
+                              const Color.fromARGB(255, 59, 99, 128),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Item Project'),
+                                content: Form(
+                                  key: formKey,
+                                  child: TextFormField(
+                                    controller: itemProjectController,
+                                    decoration: InputDecoration(
+                                      hintText: "Input Item Project",
+                                      labelText: "Item Project",
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
+                                      ),
+                                    ),
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return "Item Project Can't Be Empty!";
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: const Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () async {
+                                      Navigator.of(context).pop();
+                                      if (formKey.currentState!.validate()) {
+                                        await value.addDetailProject(
+                                          DetailProject(
+                                            id: 0,
+                                            projectId: widget.idProject,
+                                            name: itemProjectController.text
+                                                .toString(),
+                                            status: false,
+                                          ),
+                                        );
+
+                                        if (value.state ==
+                                            DetailProjectViewState.success) {
+                                          itemProjectController.clear();
+                                          value.getDetailProjects(
+                                              widget.idProject);
+                                        }
+                                      }
+                                    },
+                                    child: const Text('Save'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                          child: const Icon(Icons.add),
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
           ],
@@ -175,6 +364,4 @@ class _DetailProjectScreenState extends State<DetailProjectScreen> {
       ),
     );
   }
-
-  void doNothing(BuildContext context) {}
 }
