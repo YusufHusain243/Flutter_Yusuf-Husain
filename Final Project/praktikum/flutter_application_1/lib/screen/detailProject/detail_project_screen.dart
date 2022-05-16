@@ -9,8 +9,13 @@ import 'package:provider/provider.dart';
 
 class DetailProjectScreen extends StatefulWidget {
   int idProject;
+  String nameProject;
   int idUser;
-  DetailProjectScreen({Key? key, required this.idProject, required this.idUser})
+  DetailProjectScreen(
+      {Key? key,
+      required this.idProject,
+      required this.idUser,
+      required this.nameProject})
       : super(key: key);
 
   @override
@@ -141,19 +146,36 @@ class _DetailProjectScreenState extends State<DetailProjectScreen> {
                       ),
                     ],
                   ),
-                  Column(
-                    children: const [
-                      Text(
-                        'Name Project',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                  const SizedBox(
+                    width: 20,
                   ),
+                  Flexible(
+                    child: Text(
+                      widget.nameProject.toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 5,
+                      softWrap: true,
+                      overflow: TextOverflow.fade,
+                    ),
+                  ),
+                  // Column(
+                  //   children: [
+
+                  // Text(
+                  //   widget.nameProject.toString(),
+                  // style: const TextStyle(
+                  //   color: Colors.white,
+                  //   fontSize: 25,
+                  //   fontWeight: FontWeight.bold,
+                  // ),
+                  //   textAlign: TextAlign.center,
+                  // ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),

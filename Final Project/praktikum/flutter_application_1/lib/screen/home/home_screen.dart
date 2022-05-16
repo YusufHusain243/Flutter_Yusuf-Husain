@@ -455,6 +455,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   builder: (context) => DetailProjectScreen(
                                     idProject: value.projects[index].id,
                                     idUser: widget.user.id,
+                                    nameProject:
+                                        value.projects[index].nameProject,
                                   ),
                                 ),
                               );
