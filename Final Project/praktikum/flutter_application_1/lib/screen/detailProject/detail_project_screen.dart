@@ -35,7 +35,7 @@ class _DetailProjectScreenState extends State<DetailProjectScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       var viewModel =
           Provider.of<DetailProjectViewModel>(context, listen: false);
       await viewModel.getDetailProjects(widget.idProject);

@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       var viewModel = Provider.of<HomeViewModel>(context, listen: false);
       await viewModel.getProjects(widget.user.id);
     });
