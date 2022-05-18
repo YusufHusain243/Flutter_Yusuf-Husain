@@ -5,6 +5,7 @@ import 'package:flutter_application_1/screen/home/home_screen.dart';
 import 'package:flutter_application_1/screen/login/login_view_model.dart';
 import 'package:flutter_application_1/screen/register/register_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -17,6 +18,33 @@ class _LoginScreenState extends State<LoginScreen> {
   var formKey = GlobalKey<FormState>();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+
+  late SharedPreferences loginData;
+  late bool cekLogin;
+  late int userId;
+
+  void checkLogin() async {
+    loginData = await SharedPreferences.getInstance();
+    cekLogin = loginData.getBool('cekLogin') ?? true;
+    userId = loginData.getInt('userId') ?? 0;
+
+    if (cekLogin == true && userId != 0) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(
+            userId: userId,
+          ),
+        ),
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkLogin();
+  }
 
   @override
   void dispose() {
@@ -101,13 +129,36 @@ class _LoginScreenState extends State<LoginScreen> {
                               const Text("Don't Have an Account?"),
                               TextButton(
                                 onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const RegisterScreen(),
+                                  Navigator.of(context).push(
+                                    PageRouteBuilder(
+                                      pageBuilder: (context, animation,
+                                          secondaryAnimation) {
+                                        return const RegisterScreen();
+                                      },
+                                      transitionsBuilder: (
+                                        context,
+                                        animation,
+                                        secondaryAnimation,
+                                        child,
+                                      ) {
+                                        final tween = Tween(
+                                          begin: const Offset(0, -1),
+                                          end: Offset.zero,
+                                        );
+                                        return SlideTransition(
+                                          position: animation.drive(tween),
+                                          child: child,
+                                        );
+                                      },
                                     ),
                                   );
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) =>
+                                  //         const RegisterScreen(),
+                                  //   ),
+                                  // );
                                 },
                                 child: const Text(
                                   'Register!',
@@ -136,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 );
                                 bool result = await value.login(
                                   User(
-                                    id: 1,
+                                    id: 0,
                                     email: emailController.text.toString(),
                                     password:
                                         passwordController.text.toString(),
@@ -145,14 +196,39 @@ class _LoginScreenState extends State<LoginScreen> {
                                 );
                                 if (result == true) {
                                   Navigator.of(context).pop();
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => HomeScreen(
-                                        user: value.user,
-                                      ),
+                                  Navigator.of(context).push(
+                                    PageRouteBuilder(
+                                      pageBuilder: (context, animation,
+                                          secondaryAnimation) {
+                                        return HomeScreen(
+                                          userId: value.user.id,
+                                        );
+                                      },
+                                      transitionsBuilder: (
+                                        context,
+                                        animation,
+                                        secondaryAnimation,
+                                        child,
+                                      ) {
+                                        final tween = Tween(
+                                          begin: const Offset(0, -1),
+                                          end: Offset.zero,
+                                        );
+                                        return SlideTransition(
+                                          position: animation.drive(tween),
+                                          child: child,
+                                        );
+                                      },
                                     ),
                                   );
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) => HomeScreen(
+                                  //       user: value.user,
+                                  //     ),
+                                  //   ),
+                                  // );
                                   showDialog<void>(
                                     context: context,
                                     barrierDismissible: false,

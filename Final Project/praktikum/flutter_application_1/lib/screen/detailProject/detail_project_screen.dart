@@ -6,15 +6,16 @@ import 'package:flutter_application_1/screen/login/login_screen.dart';
 import 'package:flutter_application_1/screen/resetPassword/reset_password_screen.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DetailProjectScreen extends StatefulWidget {
   int idProject;
   String nameProject;
-  int idUser;
+  int userId;
   DetailProjectScreen(
       {Key? key,
       required this.idProject,
-      required this.idUser,
+      required this.userId,
       required this.nameProject})
       : super(key: key);
 
@@ -26,15 +27,34 @@ class _DetailProjectScreenState extends State<DetailProjectScreen> {
   var formKey = GlobalKey<FormState>();
   var itemProjectController = TextEditingController();
 
+  late SharedPreferences loginData;
+  late bool cekLogin;
+
   @override
   void dispose() {
     itemProjectController.dispose();
     super.dispose();
   }
 
+  void initial() async {
+    loginData = await SharedPreferences.getInstance();
+    widget.userId = loginData.getInt('userId')!;
+    cekLogin = loginData.getBool('cekLogin')!;
+
+    if (cekLogin == false && widget.userId == 0) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const LoginScreen(),
+        ),
+      );
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    initial();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       var viewModel =
           Provider.of<DetailProjectViewModel>(context, listen: false);
@@ -73,14 +93,39 @@ class _DetailProjectScreenState extends State<DetailProjectScreen> {
                       ),
                       ListTile(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ResetPassword(
-                                id: widget.idUser,
-                              ),
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) {
+                                return ResetPassword(
+                                  id: widget.userId,
+                                );
+                              },
+                              transitionsBuilder: (
+                                context,
+                                animation,
+                                secondaryAnimation,
+                                child,
+                              ) {
+                                final tween = Tween(
+                                  begin: const Offset(0, -1),
+                                  end: Offset.zero,
+                                );
+                                return SlideTransition(
+                                  position: animation.drive(tween),
+                                  child: child,
+                                );
+                              },
                             ),
                           );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => ResetPassword(
+                          //       id: widget.idUser,
+                          //     ),
+                          //   ),
+                          // );
                         },
                         iconColor: Colors.white,
                         textColor: Colors.white,
@@ -97,10 +142,29 @@ class _DetailProjectScreenState extends State<DetailProjectScreen> {
                       ),
                       ListTile(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LoginScreen(),
+                          loginData.remove('userId');
+                          loginData.remove('ccekLogin');
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) {
+                                return const LoginScreen();
+                              },
+                              transitionsBuilder: (
+                                context,
+                                animation,
+                                secondaryAnimation,
+                                child,
+                              ) {
+                                final tween = Tween(
+                                  begin: const Offset(0, -1),
+                                  end: Offset.zero,
+                                );
+                                return SlideTransition(
+                                  position: animation.drive(tween),
+                                  child: child,
+                                );
+                              },
                             ),
                           );
                         },

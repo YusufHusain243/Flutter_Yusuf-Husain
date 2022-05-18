@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/model/api/users_api.dart';
 import 'package:flutter_application_1/model/users_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginViewModel with ChangeNotifier {
   User _user = User(id: 0, username: '', email: '', password: '');
@@ -21,6 +22,9 @@ class LoginViewModel with ChangeNotifier {
           password: u['data']['password'],
         );
         notifyListeners();
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setInt('userId', _user.id);
+        await prefs.setBool('cekLogin', true);
         return true;
       } else {
         _status = 'Login Failed';

@@ -8,12 +8,11 @@ import 'package:flutter_application_1/screen/resetPassword/reset_password_screen
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
-
-import '../../model/users_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
-  User user;
-  HomeScreen({Key? key, required this.user}) : super(key: key);
+  int userId;
+  HomeScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -27,6 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
   var formKeyJoin = GlobalKey<FormState>();
   var joinCodeController = TextEditingController();
 
+  late SharedPreferences loginData;
+  late bool cekLogin;
+
   @override
   void dispose() {
     nameProjectController.dispose();
@@ -35,12 +37,28 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
+  void initial() async {
+    loginData = await SharedPreferences.getInstance();
+    widget.userId = loginData.getInt('userId')!;
+    cekLogin = loginData.getBool('cekLogin')!;
+
+    if (cekLogin == false && widget.userId == 0) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const LoginScreen(),
+        ),
+      );
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    initial();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       var viewModel = Provider.of<HomeViewModel>(context, listen: false);
-      await viewModel.getProjects(widget.user.id);
+      await viewModel.getProjects(widget.userId);
     });
   }
 
@@ -75,13 +93,36 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       ListTile(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  ResetPassword(id: widget.user.id),
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) {
+                                return ResetPassword(id: widget.userId);
+                              },
+                              transitionsBuilder: (
+                                context,
+                                animation,
+                                secondaryAnimation,
+                                child,
+                              ) {
+                                final tween = Tween(
+                                  begin: const Offset(0, -1),
+                                  end: Offset.zero,
+                                );
+                                return SlideTransition(
+                                  position: animation.drive(tween),
+                                  child: child,
+                                );
+                              },
                             ),
                           );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) =>
+                          //         ResetPassword(id: widget.user.id),
+                          //   ),
+                          // );
                         },
                         iconColor: Colors.white,
                         textColor: Colors.white,
@@ -98,12 +139,37 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       ListTile(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LoginScreen(),
+                          loginData.remove('userId');
+                          loginData.remove('ccekLogin');
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) {
+                                return const LoginScreen();
+                              },
+                              transitionsBuilder: (
+                                context,
+                                animation,
+                                secondaryAnimation,
+                                child,
+                              ) {
+                                final tween = Tween(
+                                  begin: const Offset(0, -1),
+                                  end: Offset.zero,
+                                );
+                                return SlideTransition(
+                                  position: animation.drive(tween),
+                                  child: child,
+                                );
+                              },
                             ),
                           );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => const LoginScreen(),
+                          //   ),
+                          // );
                         },
                         iconColor: Colors.white,
                         textColor: Colors.white,
@@ -210,7 +276,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 await value.createProject(
                                                   Project(
                                                     id: 0,
-                                                    userId: widget.user.id,
+                                                    userId: widget.userId,
                                                     nameProject:
                                                         nameProjectController
                                                             .text
@@ -227,7 +293,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   nameProjectController.clear();
                                                   codeProjectController.clear();
                                                   value.getProjects(
-                                                      widget.user.id);
+                                                      widget.userId);
                                                 }
                                               }
                                             },
@@ -341,12 +407,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                           Navigator.of(context).pop();
                                           await value.joinProject(
                                             joinCodeController.text,
-                                            widget.user.id,
+                                            widget.userId,
                                           );
 
                                           if (value.state ==
                                               HomeViewState.success) {
-                                            value.getProjects(widget.user.id);
+                                            value.getProjects(widget.userId);
                                           }
                                         }
                                       },
@@ -406,7 +472,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                             if (value.state ==
                                                 HomeViewState.success) {
-                                              value.getProjects(widget.user.id);
+                                              value.getProjects(widget.userId);
                                             }
                                           },
                                           child: const Text('Yes'),
@@ -449,17 +515,45 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           child: ListTile(
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => DetailProjectScreen(
-                                    idProject: value.projects[index].id,
-                                    idUser: widget.user.id,
-                                    nameProject:
-                                        value.projects[index].nameProject,
-                                  ),
+                              Navigator.of(context).push(
+                                PageRouteBuilder(
+                                  pageBuilder:
+                                      (context, animation, secondaryAnimation) {
+                                    return DetailProjectScreen(
+                                      idProject: value.projects[index].id,
+                                      userId: widget.userId,
+                                      nameProject:
+                                          value.projects[index].nameProject,
+                                    );
+                                  },
+                                  transitionsBuilder: (
+                                    context,
+                                    animation,
+                                    secondaryAnimation,
+                                    child,
+                                  ) {
+                                    final tween = Tween(
+                                      begin: const Offset(0, -1),
+                                      end: Offset.zero,
+                                    );
+                                    return SlideTransition(
+                                      position: animation.drive(tween),
+                                      child: child,
+                                    );
+                                  },
                                 ),
                               );
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => DetailProjectScreen(
+                              //       idProject: value.projects[index].id,
+                              //       idUser: widget.user.id,
+                              //       nameProject:
+                              //           value.projects[index].nameProject,
+                              //     ),
+                              //   ),
+                              // );
                             },
                             selected: true,
                             selectedTileColor:
