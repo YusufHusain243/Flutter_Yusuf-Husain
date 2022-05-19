@@ -58,7 +58,13 @@ class _LoginScreenState extends State<LoginScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Team Works Application'),
+          automaticallyImplyLeading: false,
+          title: const Text(
+            'Team Works Application',
+            key: Key(
+              'title',
+            ),
+          ),
           centerTitle: true,
           backgroundColor: const Color.fromARGB(255, 59, 99, 128),
         ),
@@ -72,6 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Image.asset(
                 'assets/logo.png',
                 fit: BoxFit.cover,
+                key: const Key('logo'),
               ),
               const SizedBox(
                 height: 40,
@@ -86,6 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           TextFormField(
+                            key: const Key('email'),
                             controller: emailController,
                             decoration: InputDecoration(
                               hintText: "Input Email",
@@ -128,6 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               const Text("Don't Have an Account?"),
                               TextButton(
+                                key: const Key('register'),
                                 onPressed: () {
                                   Navigator.of(context).push(
                                     PageRouteBuilder(
