@@ -21,7 +21,7 @@ class DetailProjectViewModel with ChangeNotifier {
   getDetailProjects(int id) async {
     ChangeState(DetailProjectViewState.loading);
     try {
-      final p = await DetailProjectAPI.getDetailProject(id);
+      final p = await DetailProjectAPI().getDetailProject(id);
       _detailProjects = p;
       notifyListeners();
       ChangeState(DetailProjectViewState.success);
@@ -33,7 +33,7 @@ class DetailProjectViewModel with ChangeNotifier {
   addDetailProject(DetailProject detailProject) async {
     ChangeState(DetailProjectViewState.loading);
     try {
-      final p = await DetailProjectAPI.addDetailProject(detailProject);
+      final p = await DetailProjectAPI().addDetailProject(detailProject);
       _status = 'Add Item Success';
       notifyListeners();
       ChangeState(DetailProjectViewState.success);
@@ -46,7 +46,7 @@ class DetailProjectViewModel with ChangeNotifier {
 
   Future<bool> deleteDetailProject(int id) async {
     try {
-      bool result = await DetailProjectAPI.deleteDetailProject(id);
+      bool result = await DetailProjectAPI().deleteDetailProject(id);
       if (result = true) {
         return true;
       } else {
@@ -59,7 +59,7 @@ class DetailProjectViewModel with ChangeNotifier {
 
   Future<bool> updateDetailProject(int id, bool status) async {
     try {
-      bool result = await DetailProjectAPI.updateDetailProject(id, status);
+      bool result = await DetailProjectAPI().updateDetailProject(id, status);
       if (result == true) {
         return true;
       } else {

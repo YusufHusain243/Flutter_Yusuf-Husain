@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_application_1/model/detail_project.dart';
 
 class DetailProjectAPI {
-  static Future<List<DetailProject>> getDetailProject(int id) async {
+  Future<List<DetailProject>> getDetailProject(int id) async {
     final response = await Dio().get(
       'https://yusuf.bentenserver.my.id/public/api/item-project/index/$id',
     );
@@ -28,7 +28,7 @@ class DetailProjectAPI {
     return [];
   }
 
-  static Future<bool> addDetailProject(DetailProject detailProject) async {
+  Future<bool> addDetailProject(DetailProject detailProject) async {
     var dataProject = jsonEncode(<String, dynamic>{
       'project_id': detailProject.projectId,
       'name': detailProject.name,
@@ -46,7 +46,7 @@ class DetailProjectAPI {
     return false;
   }
 
-  static Future<bool> deleteDetailProject(int id) async {
+  Future<bool> deleteDetailProject(int id) async {
     final response = await Dio().delete(
       'https://yusuf.bentenserver.my.id/public/api/item-project/delete/$id',
     );
@@ -57,7 +57,7 @@ class DetailProjectAPI {
     return false;
   }
 
-  static Future<bool> updateDetailProject(int id, bool status) async {
+  Future<bool> updateDetailProject(int id, bool status) async {
     var updateStatus = jsonEncode(<String, dynamic>{
       'status': status,
       'id': id,

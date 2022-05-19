@@ -4,7 +4,7 @@ import 'package:flutter_application_1/model/projects_model.dart';
 import 'package:dio/dio.dart';
 
 class ProjectAPI {
-  static Future<List<Project>> getProject(int id) async {
+  Future<List<Project>> getProject(int id) async {
     final response = await Dio().get(
       'https://yusuf.bentenserver.my.id/public/api/project/index/$id',
     );
@@ -23,7 +23,7 @@ class ProjectAPI {
     return [];
   }
 
-  static Future<bool> createProject(Project project) async {
+  Future<bool> createProject(Project project) async {
     var dataProject = jsonEncode(<String, dynamic>{
       'user_id': project.userId,
       'name_project': project.nameProject,
@@ -40,7 +40,7 @@ class ProjectAPI {
     return false;
   }
 
-  static Future<bool> deleteProject(int id) async {
+  Future<bool> deleteProject(int id) async {
     final response = await Dio().delete(
       'https://yusuf.bentenserver.my.id/public/api/project/delete/$id',
     );
@@ -51,7 +51,7 @@ class ProjectAPI {
     return false;
   }
 
-  static Future<bool> joinProject(String codeProject, int userId) async {
+  Future<bool> joinProject(String codeProject, int userId) async {
     var dataProject = jsonEncode(<String, dynamic>{
       'user_id': userId,
       'code_project': codeProject,

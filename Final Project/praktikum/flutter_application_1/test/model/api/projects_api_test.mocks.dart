@@ -2,7 +2,10 @@
 // in flutter_application_1/test/model/api/projects_api_test.dart.
 // Do not manually edit this file.
 
+import 'dart:async' as _i3;
+
 import 'package:flutter_application_1/model/api/projects_api.dart' as _i2;
+import 'package:flutter_application_1/model/projects_model.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -22,4 +25,22 @@ class MockProjectAPI extends _i1.Mock implements _i2.ProjectAPI {
   MockProjectAPI() {
     _i1.throwOnMissingStub(this);
   }
+
+  @override
+  _i3.Future<List<_i4.Project>> getProject(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getProject, [id]),
+              returnValue: Future<List<_i4.Project>>.value(<_i4.Project>[]))
+          as _i3.Future<List<_i4.Project>>);
+  @override
+  _i3.Future<bool> createProject(_i4.Project? project) =>
+      (super.noSuchMethod(Invocation.method(#createProject, [project]),
+          returnValue: Future<bool>.value(false)) as _i3.Future<bool>);
+  @override
+  _i3.Future<bool> deleteProject(int? id) =>
+      (super.noSuchMethod(Invocation.method(#deleteProject, [id]),
+          returnValue: Future<bool>.value(false)) as _i3.Future<bool>);
+  @override
+  _i3.Future<bool> joinProject(String? codeProject, int? userId) => (super
+      .noSuchMethod(Invocation.method(#joinProject, [codeProject, userId]),
+          returnValue: Future<bool>.value(false)) as _i3.Future<bool>);
 }

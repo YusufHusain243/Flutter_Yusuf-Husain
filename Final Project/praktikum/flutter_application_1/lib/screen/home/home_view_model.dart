@@ -21,7 +21,7 @@ class HomeViewModel with ChangeNotifier {
   getProjects(int id) async {
     ChangeState(HomeViewState.loading);
     try {
-      final p = await ProjectAPI.getProject(id);
+      final p = await ProjectAPI().getProject(id);
       _projects = p;
       notifyListeners();
       ChangeState(HomeViewState.success);
@@ -33,7 +33,7 @@ class HomeViewModel with ChangeNotifier {
   createProject(Project project) async {
     ChangeState(HomeViewState.loading);
     try {
-      final p = await ProjectAPI.createProject(project);
+      final p = await ProjectAPI().createProject(project);
       _status = 'Create Success';
       notifyListeners();
       ChangeState(HomeViewState.success);
@@ -47,7 +47,7 @@ class HomeViewModel with ChangeNotifier {
   deleteProject(int id) async {
     ChangeState(HomeViewState.loading);
     try {
-      final p = await ProjectAPI.deleteProject(id);
+      final p = await ProjectAPI().deleteProject(id);
       _status = 'Delete Success';
       notifyListeners();
       ChangeState(HomeViewState.success);
@@ -61,7 +61,7 @@ class HomeViewModel with ChangeNotifier {
   joinProject(String codeProject, int userId) async {
     ChangeState(HomeViewState.loading);
     try {
-      final p = await ProjectAPI.joinProject(codeProject, userId);
+      final p = await ProjectAPI().joinProject(codeProject, userId);
       _status = 'Join Success';
       notifyListeners();
       ChangeState(HomeViewState.success);

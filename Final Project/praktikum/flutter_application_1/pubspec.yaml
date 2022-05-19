@@ -40,9 +40,9 @@ dependencies:
   dio: ^4.0.6
   sharedpreference: ^0.0.1
   shared_preferences: ^2.0.15
-  test: ^1.21.1
-  mockito: ^5.2.0
-  build_runner: ^2.1.11
+  test: ^1.19.5
+  mockito: ^5.1.0
+  build_runner: ^2.1.10
 
 dev_dependencies:
   flutter_test:

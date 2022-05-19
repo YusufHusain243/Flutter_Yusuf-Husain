@@ -7,19 +7,43 @@ import 'projects_api_test.mocks.dart';
 
 @GenerateMocks([ProjectAPI])
 void main() {
-  group('projects api', () {
+  group('Projects Api', () {
     ProjectAPI projectAPI = MockProjectAPI();
+    Project projectData = Project(
+      id: 100,
+      userId: 9,
+      nameProject: 'nameProject',
+      codeProject: 'codeProject',
+    );
     test('get all projects', () async {
-      when(projectAPI.getProject(33).then((_) async => <Project>[
+      when(projectAPI.getProject(9)).thenAnswer((_) async => <Project>[
             Project(
-              id: 33,
+              id: 42,
               userId: 9,
               nameProject: 'aaa',
               codeProject: 'aaa',
             )
-          ]));
-      var projects = await projectAPI.getProject(33);
-      expect(projects.isEmpty, true);
+          ]);
+      var projects = await projectAPI.getProject(9);
+      expect(projects.isNotEmpty, true);
+    });
+
+    test('create projects', () async {
+      when(projectAPI.createProject(projectData)).thenAnswer((_) async => true);
+      var projects = await projectAPI.createProject(projectData);
+      expect(projects, true);
+    });
+
+    test('delete projects', () async {
+      when(projectAPI.deleteProject(42)).thenAnswer((_) async => true);
+      var projects = await projectAPI.deleteProject(42);
+      expect(projects, true);
+    });
+
+    test('join projects', () async {
+      when(projectAPI.joinProject('aaa', 9)).thenAnswer((_) async => true);
+      var projects = await projectAPI.joinProject('aaa', 9);
+      expect(projects, true);
     });
   });
 }

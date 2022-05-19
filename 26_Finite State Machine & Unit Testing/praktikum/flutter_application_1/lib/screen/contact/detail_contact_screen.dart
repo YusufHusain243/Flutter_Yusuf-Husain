@@ -16,7 +16,7 @@ class _DetailContactScreenState extends State<DetailContactScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       var viewModel = Provider.of<ContactViewModel>(context, listen: false);
       await viewModel.getContactId(widget.id.toInt());
     });

@@ -10,7 +10,6 @@ class UserAPI {
       'password': user.password,
       'username': user.username,
     });
-    print(dataRegis);
     final response = await Dio().post(
       "https://yusuf.bentenserver.my.id/public/api/users/registration",
       data: dataRegis,
@@ -24,7 +23,6 @@ class UserAPI {
   }
 
   Future<Map<String, dynamic>> login(User user) async {
-    // print(user);
     var dataLogin = jsonEncode(<String, dynamic>{
       'email': user.email,
       'password': user.password,
@@ -35,13 +33,14 @@ class UserAPI {
     );
 
     if (response.statusCode == 200) {
+      print(response.data);
       return response.data;
     } else {
       return {};
     }
   }
 
-  static Future<bool> resetPassword(int id, String password) async {
+  Future<bool> resetPassword(int id, String password) async {
     var resetPassword = jsonEncode(<String, dynamic>{
       'id': id,
       'password': password,

@@ -14,7 +14,7 @@ class _FoodScreenState extends State<FoodScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       var viewModel = Provider.of<FoodViewModel>(context, listen: false);
       await viewModel.getAllFood();
     });
