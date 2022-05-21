@@ -14,8 +14,7 @@ class UserAPI {
       "https://yusuf.bentenserver.my.id/public/api/users/registration",
       data: dataRegis,
     );
-
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200 && response.data['status'] == 'true') {
       return 'Registration Success';
     } else {
       return 'Registration Failed';

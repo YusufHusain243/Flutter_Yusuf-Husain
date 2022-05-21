@@ -59,16 +59,21 @@ class HomeViewModel with ChangeNotifier {
   }
 
   joinProject(String codeProject, int userId) async {
-    ChangeState(HomeViewState.loading);
-    try {
-      final p = await ProjectAPI().joinProject(codeProject, userId);
-      _status = 'Join Success';
-      notifyListeners();
-      ChangeState(HomeViewState.success);
-    } catch (e) {
-      _status = 'Join Failed';
-      notifyListeners();
-      ChangeState(HomeViewState.error);
-    }
+    print(codeProject);
+    print(userId);
+    // ChangeState(HomeViewState.loading);
+    // try {
+    final p = await ProjectAPI().joinProject(codeProject, userId);
+    print(p);
+    //   // if (p == true) {
+    //   //   _status = 'Join Success';
+    //   //   notifyListeners();
+    //   // }
+    //   ChangeState(HomeViewState.success);
+    // } catch (e) {
+    //   _status = 'Join Failed';
+    //   notifyListeners();
+    //   ChangeState(HomeViewState.error);
+    // }
   }
 }

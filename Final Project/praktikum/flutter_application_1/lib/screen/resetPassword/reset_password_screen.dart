@@ -13,6 +13,14 @@ class ResetPassword extends StatefulWidget {
 class _ResetPasswordState extends State<ResetPassword> {
   var formKey = GlobalKey<FormState>();
   var passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    passwordController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,7 +28,7 @@ class _ResetPasswordState extends State<ResetPassword> {
         appBar: AppBar(
           title: const Text('Reset Password'),
           centerTitle: true,
-          backgroundColor: const Color.fromARGB(255, 59, 99, 128),
+          backgroundColor: const Color(0xff646FD4),
         ),
         body: Consumer<ResetPasswordViewModel>(
           builder: (context, value, child) {
@@ -33,10 +41,33 @@ class _ResetPasswordState extends State<ResetPassword> {
                     TextFormField(
                       controller: passwordController,
                       decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
                         hintText: "Input New Password",
                         labelText: "New Password",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5.0),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                          borderSide: const BorderSide(
+                            color: Colors.black,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                          borderSide: const BorderSide(
+                            color: Colors.black,
+                          ),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                          borderSide: const BorderSide(
+                            color: Colors.black,
+                          ),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                          borderSide: const BorderSide(
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                       validator: (value) {
@@ -47,16 +78,17 @@ class _ResetPasswordState extends State<ResetPassword> {
                       },
                     ),
                     const SizedBox(
-                      height: 25,
+                      height: 15,
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: const Color.fromARGB(255, 59, 99, 128),
-                        minimumSize: const Size.fromHeight(50),
+                        primary: const Color(0xff646FD4),
+                        minimumSize: const Size.fromHeight(55),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
                       ),
-                      // onPressed: () {},
                       onPressed: () async {
-                        // if (formKey.currentState!.validate()) {
                         showDialog<void>(
                           context: context,
                           barrierDismissible: false,
@@ -111,7 +143,6 @@ class _ResetPasswordState extends State<ResetPassword> {
                             },
                           );
                         }
-                        // }
                       },
                       child: const Text(
                         'Reset Password',

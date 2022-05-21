@@ -20,7 +20,6 @@ void main() {
           ),
         ),
       );
-      // await tester.pumpAndSettle(const Duration(seconds: 5));
       expect(find.byKey(const Key('title')), findsOneWidget);
     });
 
@@ -38,7 +37,6 @@ void main() {
           ),
         ),
       );
-      // await tester.pumpAndSettle(const Duration(seconds: 5));
       expect(find.byKey(const Key('logo')), findsOneWidget);
     });
 

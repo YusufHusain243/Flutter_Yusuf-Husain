@@ -6,6 +6,7 @@ import 'package:flutter_application_1/screen/home/home_view_state.dart';
 import 'package:flutter_application_1/screen/login/login_screen.dart';
 import 'package:flutter_application_1/screen/resetPassword/reset_password_screen.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -67,25 +68,45 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Team Works Application'),
+          title: const Text('Team Work Application'),
           centerTitle: true,
-          backgroundColor: const Color.fromARGB(255, 59, 99, 128),
+          backgroundColor: const Color(0xff646FD4),
         ),
         drawer: Drawer(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                color: const Color.fromARGB(255, 55, 129, 182),
-                padding: const EdgeInsets.all(40),
-                child: Image.asset(
-                  'assets/logo.png',
-                  fit: BoxFit.cover,
+                alignment: Alignment.centerLeft,
+                color: const Color(0xff646FD4),
+                width: double.infinity,
+                padding: const EdgeInsets.only(
+                  top: 40,
+                  left: 20,
+                  bottom: 40,
+                ),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/logo3.png',
+                      scale: 2.5,
+                      color: Colors.white,
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Image.asset(
+                      'assets/logo6.png',
+                      scale: 2.5,
+                      color: Colors.white,
+                    ),
+                  ],
                 ),
               ),
               Expanded(
                 child: Container(
                   width: double.infinity,
-                  color: const Color.fromARGB(255, 59, 99, 128),
+                  color: Colors.white,
                   child: ListView(
                     children: [
                       const SizedBox(
@@ -117,10 +138,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         },
-                        iconColor: Colors.white,
-                        textColor: Colors.white,
+                        iconColor: const Color.fromARGB(255, 0, 0, 0),
+                        textColor: const Color.fromARGB(255, 0, 0, 0),
                         leading: const Icon(
-                          Icons.restore,
+                          Icons.lock_reset,
                           size: 30,
                         ),
                         title: const Text(
@@ -133,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ListTile(
                         onTap: () {
                           loginData.remove('userId');
-                          loginData.remove('ccekLogin');
+                          loginData.remove('cekLogin');
                           Navigator.of(context).push(
                             PageRouteBuilder(
                               pageBuilder:
@@ -158,8 +179,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         },
-                        iconColor: Colors.white,
-                        textColor: Colors.white,
+                        iconColor: Color.fromARGB(255, 2, 0, 0),
+                        textColor: Color.fromARGB(255, 0, 0, 0),
                         leading: const Icon(
                           Icons.logout,
                           size: 27,
@@ -181,34 +202,26 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Column(
           children: [
             Container(
-              padding: const EdgeInsets.all(30),
+              padding: const EdgeInsets.only(
+                top: 45,
+                bottom: 45,
+                left: 30,
+                right: 30,
+              ),
               width: double.infinity,
-              color: const Color.fromARGB(255, 59, 99, 128),
+              color: const Color.fromARGB(255, 180, 189, 255),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    children: [
-                      const Text(
-                        'Team Works\nApplication',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Image.asset(
-                        'assets/logo.png',
-                        scale: 9,
-                      ),
-                    ],
+                  Image.asset(
+                    'assets/logo5.png',
+                    scale: 3,
                   ),
                   Column(
                     children: [
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.black,
+                          primary: const Color(0xff646FD4),
                         ),
                         onPressed: () {
                           showModalBottomSheet(
@@ -354,7 +367,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.black,
+                          primary: const Color(0xff646FD4),
                         ),
                         onPressed: () {
                           showDialog(
@@ -422,151 +435,181 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Consumer<HomeViewModel>(
                 builder: (context, value, child) {
                   if (value.state == HomeViewState.loading) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
+                    return Container(
+                      color: const Color.fromARGB(255, 243, 243, 243),
+                      child: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
                     );
                   }
 
                   if (value.state == HomeViewState.success) {
                     return RefreshIndicator(
                       onRefresh: refreshData,
-                      child: ListView.separated(
-                        itemCount: value.projects.length,
-                        itemBuilder: (context, index) {
-                          return Slidable(
-                            closeOnScroll: true,
-                            endActionPane: ActionPane(
-                              motion: const ScrollMotion(),
-                              children: [
-                                SlidableAction(
-                                  onPressed: (BuildContext context) {
-                                    showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) =>
-                                          AlertDialog(
-                                        title: const Text('Delete Project'),
-                                        content: const Text('Are you sure?'),
-                                        actions: <Widget>[
-                                          TextButton(
-                                            onPressed: () =>
-                                                Navigator.pop(context),
-                                            child: const Text('Cancel'),
-                                          ),
-                                          TextButton(
-                                            onPressed: () async {
-                                              Navigator.of(context).pop();
-                                              await value.deleteProject(
-                                                value.projects[index].id,
-                                              );
+                      child: Container(
+                        color: const Color.fromARGB(255, 243, 243, 243),
+                        child: ListView.builder(
+                          itemCount: value.projects.length,
+                          itemBuilder: (context, index) {
+                            return Card(
+                              child: Slidable(
+                                closeOnScroll: true,
+                                endActionPane: ActionPane(
+                                  motion: const ScrollMotion(),
+                                  children: [
+                                    SlidableAction(
+                                      onPressed: (BuildContext context) {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              AlertDialog(
+                                            title: const Text('Delete Project'),
+                                            content:
+                                                const Text('Are you sure?'),
+                                            actions: <Widget>[
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                children: [
+                                                  IconsButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    text: 'Cancel',
+                                                    iconData: Icons.close,
+                                                    color: Colors.grey,
+                                                    textStyle: const TextStyle(
+                                                        color: Colors.white),
+                                                    iconColor: Colors.white,
+                                                  ),
+                                                  IconsButton(
+                                                    onPressed: () async {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                      await value.deleteProject(
+                                                        value
+                                                            .projects[index].id,
+                                                      );
 
-                                              if (value.state ==
-                                                  HomeViewState.success) {
-                                                value
-                                                    .getProjects(widget.userId);
-                                              }
-                                            },
-                                            child: const Text('Yes'),
+                                                      if (value.state ==
+                                                          HomeViewState
+                                                              .success) {
+                                                        value.getProjects(
+                                                            widget.userId);
+                                                      }
+                                                    },
+                                                    text: 'Delete',
+                                                    iconData: Icons.delete,
+                                                    color: Colors.red,
+                                                    textStyle: const TextStyle(
+                                                        color: Colors.white),
+                                                    iconColor: Colors.white,
+                                                  ),
+                                                ],
+                                              )
+                                            ],
                                           ),
-                                        ],
+                                        );
+                                      },
+                                      backgroundColor:
+                                          const Color.fromRGBO(255, 0, 0, 1),
+                                      foregroundColor: Colors.white,
+                                      icon: Icons.delete,
+                                      label: 'Delete',
+                                    ),
+                                    SlidableAction(
+                                      onPressed: (BuildContext context) {
+                                        Clipboard.setData(
+                                          ClipboardData(
+                                            text: value
+                                                .projects[index].codeProject
+                                                .toString(),
+                                          ),
+                                        ).then((_) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                              content: Text(
+                                                "Code project copied to clipboard",
+                                              ),
+                                            ),
+                                          );
+                                        });
+                                      },
+                                      backgroundColor: const Color.fromRGBO(
+                                          143, 143, 143, 1),
+                                      foregroundColor: const Color.fromARGB(
+                                          255, 255, 255, 255),
+                                      icon: Icons.copy,
+                                      label: 'Copy',
+                                    ),
+                                  ],
+                                ),
+                                child: ListTile(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, animation,
+                                            secondaryAnimation) {
+                                          return DetailProjectScreen(
+                                            idProject: value.projects[index].id,
+                                            userId: widget.userId,
+                                            nameProject: value
+                                                .projects[index].nameProject,
+                                          );
+                                        },
+                                        transitionsBuilder: (
+                                          context,
+                                          animation,
+                                          secondaryAnimation,
+                                          child,
+                                        ) {
+                                          final tween = Tween(
+                                            begin: const Offset(0, -1),
+                                            end: Offset.zero,
+                                          );
+                                          return SlideTransition(
+                                            position: animation.drive(tween),
+                                            child: child,
+                                          );
+                                        },
                                       ),
                                     );
                                   },
-                                  backgroundColor:
-                                      const Color.fromRGBO(255, 0, 0, 1),
-                                  foregroundColor: Colors.white,
-                                  icon: Icons.delete,
-                                  label: 'Delete',
-                                ),
-                                SlidableAction(
-                                  onPressed: (BuildContext context) {
-                                    Clipboard.setData(
-                                      ClipboardData(
-                                        text: value.projects[index].codeProject
-                                            .toString(),
-                                      ),
-                                    ).then((_) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        const SnackBar(
-                                          content: Text(
-                                            "Code project copied to clipboard",
-                                          ),
-                                        ),
-                                      );
-                                    });
-                                  },
-                                  backgroundColor:
-                                      const Color.fromRGBO(143, 143, 143, 1),
-                                  foregroundColor:
-                                      const Color.fromARGB(255, 255, 255, 255),
-                                  icon: Icons.copy,
-                                  label: 'Copy',
-                                ),
-                              ],
-                            ),
-                            child: ListTile(
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  PageRouteBuilder(
-                                    pageBuilder: (context, animation,
-                                        secondaryAnimation) {
-                                      return DetailProjectScreen(
-                                        idProject: value.projects[index].id,
-                                        userId: widget.userId,
-                                        nameProject:
-                                            value.projects[index].nameProject,
-                                      );
-                                    },
-                                    transitionsBuilder: (
-                                      context,
-                                      animation,
-                                      secondaryAnimation,
-                                      child,
-                                    ) {
-                                      final tween = Tween(
-                                        begin: const Offset(0, -1),
-                                        end: Offset.zero,
-                                      );
-                                      return SlideTransition(
-                                        position: animation.drive(tween),
-                                        child: child,
-                                      );
-                                    },
+                                  title: Text(
+                                    value.projects[index].nameProject
+                                        .toString(),
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                    ),
                                   ),
-                                );
-                              },
-                              selected: true,
-                              selectedTileColor:
-                                  const Color.fromARGB(255, 243, 243, 243),
-                              shape: const Border(bottom: BorderSide(width: 1)),
-                              title: Text(
-                                value.projects[index].nameProject.toString(),
-                                style: const TextStyle(
-                                  color: Colors.black,
+                                  visualDensity:
+                                      const VisualDensity(vertical: 4),
                                 ),
                               ),
-                              visualDensity: const VisualDensity(vertical: 4),
-                            ),
-                          );
-                        },
-                        separatorBuilder: (context, index) => const SizedBox(
-                          height: 3,
+                            );
+                          },
                         ),
                       ),
                     );
                   }
 
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Center(
-                        child: Text('Get Data Failed!'),
-                      ),
-                      ElevatedButton(
-                        onPressed: refreshData,
-                        child: const Text('Refresh'),
-                      ),
-                    ],
+                  return Container(
+                    color: const Color.fromARGB(255, 243, 243, 243),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Center(
+                          child: Text('Get Data Failed!'),
+                        ),
+                        ElevatedButton(
+                          onPressed: refreshData,
+                          child: const Text('Refresh'),
+                        ),
+                      ],
+                    ),
                   );
                 },
               ),
