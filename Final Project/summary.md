@@ -50,24 +50,24 @@ Tujuan utama dari pembuatan aplikasi ini adalah untuk membantu pengguna dalam me
 10. logout
 
 ## Tampilan UI
-1. login dan register<br>
+1. **login dan register**<br>
 ![login](https://user-images.githubusercontent.com/74952343/169915106-51d67015-6540-48d3-b51a-6e030d344913.jpeg)
 ![register](https://user-images.githubusercontent.com/74952343/169915108-a935239a-99c5-4ad0-a8e1-4ac0619e5cce.jpeg)
 
-2. home<br>
+2. **home**<br>
 ![home](https://user-images.githubusercontent.com/74952343/169915132-00a20288-971f-4d03-bbb9-05a3a422c1e6.jpeg)
 ![image (10)](https://user-images.githubusercontent.com/74952343/169915517-c8c90a41-cd8c-4605-9ed8-ffacba592c40.png)
 ![image (11)](https://user-images.githubusercontent.com/74952343/169915533-054cdaa0-9347-42e1-979f-c238ab6b5dcc.png)
 ![drawer (2)](https://user-images.githubusercontent.com/74952343/169915543-40c62797-6731-421a-848e-8b04205c8e98.jpg)
 
 
-3. detail project<br>
+3. **detail project**<br>
 ![detail project](https://user-images.githubusercontent.com/74952343/169915225-b95d76c8-27bc-4364-be10-61321f53fbb7.jpg)
 ![image (8)](https://user-images.githubusercontent.com/74952343/169915280-70f38f73-8376-4195-bf44-ea230ec76c72.png)
 ![drawer (1)](https://user-images.githubusercontent.com/74952343/169915310-3fb85084-d8ff-4471-a2df-389cb8f86d8d.jpg)
 ![image (9)](https://user-images.githubusercontent.com/74952343/169915318-f373c040-2c87-456d-80d0-5746107974e8.png)
 
-4. reset password<br>
+4. **reset password**<br>
 ![reset password](https://user-images.githubusercontent.com/74952343/169915328-32550166-d1fa-4e85-ac5e-69ef97eb3f90.jpg)
 
 ## Link Slide Presentation
