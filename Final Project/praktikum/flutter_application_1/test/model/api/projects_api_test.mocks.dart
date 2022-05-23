@@ -32,6 +32,11 @@ class MockProjectAPI extends _i1.Mock implements _i2.ProjectAPI {
               returnValue: Future<List<_i4.Project>>.value(<_i4.Project>[]))
           as _i3.Future<List<_i4.Project>>);
   @override
+  _i3.Future<_i4.Project?> getProjectById(int? projectId) =>
+      (super.noSuchMethod(Invocation.method(#getProjectById, [projectId]),
+              returnValue: Future<_i4.Project?>.value())
+          as _i3.Future<_i4.Project?>);
+  @override
   _i3.Future<bool> createProject(_i4.Project? project) =>
       (super.noSuchMethod(Invocation.method(#createProject, [project]),
           returnValue: Future<bool>.value(false)) as _i3.Future<bool>);
@@ -42,5 +47,9 @@ class MockProjectAPI extends _i1.Mock implements _i2.ProjectAPI {
   @override
   _i3.Future<bool> joinProject(String? codeProject, int? userId) => (super
       .noSuchMethod(Invocation.method(#joinProject, [codeProject, userId]),
+          returnValue: Future<bool>.value(false)) as _i3.Future<bool>);
+  @override
+  _i3.Future<bool> updateStatus(int? idProject, String? status) =>
+      (super.noSuchMethod(Invocation.method(#updateStatus, [idProject, status]),
           returnValue: Future<bool>.value(false)) as _i3.Future<bool>);
 }

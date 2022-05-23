@@ -76,17 +76,4 @@ class HomeViewModel with ChangeNotifier {
       ChangeState(HomeViewState.error);
     }
   }
-
-  Future<bool> updateStatus(int idProject, String status) async {
-    try {
-      final p = await ProjectAPI().updateStatus(idProject, status);
-      if (p == true) {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (e) {
-      return false;
-    }
-  }
 }

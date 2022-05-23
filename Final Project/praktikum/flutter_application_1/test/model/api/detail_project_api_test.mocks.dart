@@ -6,6 +6,7 @@ import 'dart:async' as _i3;
 
 import 'package:flutter_application_1/model/api/detail_project_api.dart' as _i2;
 import 'package:flutter_application_1/model/detail_project.dart' as _i4;
+import 'package:flutter_application_1/model/history.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -33,6 +34,11 @@ class MockDetailProjectAPI extends _i1.Mock implements _i2.DetailProjectAPI {
                   Future<List<_i4.DetailProject>>.value(<_i4.DetailProject>[]))
           as _i3.Future<List<_i4.DetailProject>>);
   @override
+  _i3.Future<List<_i5.History>> getHistory(int? projectId) =>
+      (super.noSuchMethod(Invocation.method(#getHistory, [projectId]),
+              returnValue: Future<List<_i5.History>>.value(<_i5.History>[]))
+          as _i3.Future<List<_i5.History>>);
+  @override
   _i3.Future<bool> addDetailProject(_i4.DetailProject? detailProject) =>
       (super.noSuchMethod(Invocation.method(#addDetailProject, [detailProject]),
           returnValue: Future<bool>.value(false)) as _i3.Future<bool>);
@@ -41,7 +47,8 @@ class MockDetailProjectAPI extends _i1.Mock implements _i2.DetailProjectAPI {
       (super.noSuchMethod(Invocation.method(#deleteDetailProject, [id]),
           returnValue: Future<bool>.value(false)) as _i3.Future<bool>);
   @override
-  _i3.Future<bool> updateDetailProject(int? id, bool? status) =>
-      (super.noSuchMethod(Invocation.method(#updateDetailProject, [id, status]),
+  _i3.Future<bool> updateDetailProject(int? id, String? name, bool? status) =>
+      (super.noSuchMethod(
+          Invocation.method(#updateDetailProject, [id, name, status]),
           returnValue: Future<bool>.value(false)) as _i3.Future<bool>);
 }

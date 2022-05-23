@@ -572,8 +572,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                             userId: widget.userId,
                                             nameProject: value
                                                 .projects[index].nameProject,
-                                            statusProject: value
-                                                .projects[index].statusProject,
                                           );
                                         },
                                         transitionsBuilder: (
@@ -601,18 +599,35 @@ class _HomeScreenState extends State<HomeScreen> {
                                       color: Colors.black,
                                     ),
                                   ),
-                                  trailing: Badge(
-                                    toAnimate: true,
-                                    shape: BadgeShape.square,
-                                    badgeColor: Colors.red,
-                                    borderRadius: BorderRadius.circular(10),
-                                    badgeContent: Text(
-                                      value.projects[index].statusProject,
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
+                                  trailing: value
+                                              .projects[index].statusProject ==
+                                          "Finish"
+                                      ? Badge(
+                                          toAnimate: true,
+                                          shape: BadgeShape.square,
+                                          badgeColor: Colors.green,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          badgeContent: Text(
+                                            value.projects[index].statusProject,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        )
+                                      : Badge(
+                                          toAnimate: true,
+                                          shape: BadgeShape.square,
+                                          badgeColor: Colors.red,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          badgeContent: Text(
+                                            value.projects[index].statusProject,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
                                   visualDensity: const VisualDensity(
                                     vertical: 4,
                                   ),

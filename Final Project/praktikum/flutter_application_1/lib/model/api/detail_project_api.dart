@@ -13,6 +13,8 @@ class DetailProjectAPI {
     //   'https://yusuf.bentenserver.my.id/public/api/item-project/index/$id',
     // );
 
+    // print(response.statusCode);
+
     if (response.statusCode == 200) {
       List<DetailProject> projects = (response.data as List).map((e) {
         var status;

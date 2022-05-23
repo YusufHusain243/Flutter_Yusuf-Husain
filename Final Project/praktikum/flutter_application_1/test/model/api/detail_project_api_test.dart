@@ -47,9 +47,10 @@ void main() {
     });
 
     test('update detail project', () async {
-      when(detailProjectAPI.updateDetailProject(17, true))
+      when(detailProjectAPI.updateDetailProject(17, 'aaa', true))
           .thenAnswer((_) async => true);
-      var detailProjects = await detailProjectAPI.updateDetailProject(17, true);
+      var detailProjects =
+          await detailProjectAPI.updateDetailProject(17, 'aaa', true);
       expect(detailProjects, true);
     });
   });

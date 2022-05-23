@@ -30,6 +30,27 @@ class ProjectAPI {
     return [];
   }
 
+  Future<Project?> getProjectById(int projectId) async {
+    final response = await Dio().get(
+      'http://10.0.2.2:8000/api/project/byid/$projectId',
+    );
+    // final response = await Dio().get(
+    //   'https://yusuf.bentenserver.my.id/public/api/project/index/$id',
+    // );
+
+    if (response.statusCode == 200) {
+      Project project = Project(
+        id: response.data[0]['id'],
+        userId: response.data[0]['user_id'],
+        nameProject: response.data[0]['name_project'],
+        codeProject: response.data[0]['code_project'],
+        statusProject: response.data[0]['status_project'],
+      );
+      return project;
+    }
+    return null;
+  }
+
   Future<bool> createProject(Project project) async {
     var dataProject = jsonEncode(<String, dynamic>{
       'user_id': project.userId,

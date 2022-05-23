@@ -6,23 +6,6 @@ import 'package:provider/provider.dart';
 
 void main() {
   group('login screen', () {
-    testWidgets('test title', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        MultiProvider(
-          providers: [
-            ChangeNotifierProvider(
-              create: (_) => LoginViewModel(),
-            ),
-          ],
-          child: const MaterialApp(
-            debugShowCheckedModeBanner: false,
-            home: LoginScreen(),
-          ),
-        ),
-      );
-      expect(find.byKey(const Key('title')), findsOneWidget);
-    });
-
     testWidgets('test logo', (WidgetTester tester) async {
       await tester.pumpWidget(
         MultiProvider(

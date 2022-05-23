@@ -14,6 +14,7 @@ void main() {
       userId: 9,
       nameProject: 'nameProject',
       codeProject: 'codeProject',
+      statusProject: 'statusProject',
     );
     test('get all projects', () async {
       when(projectAPI.getProject(9)).thenAnswer((_) async => <Project>[
@@ -22,6 +23,7 @@ void main() {
               userId: 9,
               nameProject: 'aaa',
               codeProject: 'aaa',
+              statusProject: 'On Progress',
             )
           ]);
       var projects = await projectAPI.getProject(9);

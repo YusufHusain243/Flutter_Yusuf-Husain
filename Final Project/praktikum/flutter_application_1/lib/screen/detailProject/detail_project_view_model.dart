@@ -4,12 +4,24 @@ import 'package:flutter_application_1/model/detail_project.dart';
 import 'package:flutter_application_1/model/history.dart';
 import 'package:flutter_application_1/screen/detailProject/detail_project_view_state.dart';
 
+import '../../model/api/projects_api.dart';
+import '../../model/projects_model.dart';
+
 class DetailProjectViewModel with ChangeNotifier {
   DetailProjectViewState _state = DetailProjectViewState.loading;
   DetailProjectViewState get state => _state;
 
   List<DetailProject> _detailProjects = [];
   List<DetailProject> get detailProjects => _detailProjects;
+
+  Project _projectId = Project(
+    id: 0,
+    userId: 0,
+    nameProject: '',
+    codeProject: '',
+    statusProject: '',
+  );
+  Project get projectId => _projectId;
 
   List<History> _history = [];
   List<History> get history => _history;
@@ -28,6 +40,19 @@ class DetailProjectViewModel with ChangeNotifier {
       final p = await DetailProjectAPI().getDetailProject(id);
       _detailProjects = p;
       notifyListeners();
+      ChangeState(DetailProjectViewState.success);
+    } catch (e) {
+      ChangeState(DetailProjectViewState.error);
+    }
+  }
+
+  getProjectById(int projectId) async {
+    ChangeState(DetailProjectViewState.loading);
+    try {
+      final p = await ProjectAPI().getProjectById(projectId);
+      _projectId = p!;
+      notifyListeners();
+      print(_projectId);
       ChangeState(DetailProjectViewState.success);
     } catch (e) {
       ChangeState(DetailProjectViewState.error);
@@ -79,6 +104,19 @@ class DetailProjectViewModel with ChangeNotifier {
       bool result =
           await DetailProjectAPI().updateDetailProject(id, name, status);
       if (result == true) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> updateStatus(int idProject, String status) async {
+    try {
+      final p = await ProjectAPI().updateStatus(idProject, status);
+      if (p == true) {
         return true;
       } else {
         return false;
