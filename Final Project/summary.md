@@ -34,6 +34,7 @@ Tujuan utama dari pembuatan aplikasi ini adalah untuk membantu pengguna dalam me
 7. state management provider
 
 ## MVVM
+![image (5)](https://user-images.githubusercontent.com/74952343/169915004-192e9dc4-07f3-4fb0-a726-3de2df8f1d84.png)
 
 ## Fitur Fitur
 
@@ -49,6 +50,24 @@ Tujuan utama dari pembuatan aplikasi ini adalah untuk membantu pengguna dalam me
 10. logout
 
 ## Tampilan UI
+1. login dan register
+![login](https://user-images.githubusercontent.com/74952343/169915106-51d67015-6540-48d3-b51a-6e030d344913.jpeg)
+![register](https://user-images.githubusercontent.com/74952343/169915108-a935239a-99c5-4ad0-a8e1-4ac0619e5cce.jpeg)
+
+2. home
+![home](https://user-images.githubusercontent.com/74952343/169915132-00a20288-971f-4d03-bbb9-05a3a422c1e6.jpeg)
+![image (7)](https://user-images.githubusercontent.com/74952343/169915173-a9cfde5d-66f9-4009-b425-a4374571af6![drawer](https://user-images.githubusercontent.com/74952343/169915187-6673283e-859b-41ab-bb26-42418c0a2ff4.jpg)
+1.png)
+![image (6)](https://user-images.githubusercontent.com/74952343/169915198-60d9c4e6-7a11-45d4-a171-fb59c0aa4c46.png)
+
+3. detail project
+![detail project](https://user-images.githubusercontent.com/74952343/169915225-b95d76c8-27bc-4364-be10-61321f53fbb7.jpg)
+![image (8)](https://user-images.githubusercontent.com/74952343/169915280-70f38f73-8376-4195-bf44-ea230ec76c72.png)
+![drawer (1)](https://user-images.githubusercontent.com/74952343/169915310-3fb85084-d8ff-4471-a2df-389cb8f86d8d.jpg)
+![image (9)](https://user-images.githubusercontent.com/74952343/169915318-f373c040-2c87-456d-80d0-5746107974e8.png)
+
+4. reset password
+![reset password](https://user-images.githubusercontent.com/74952343/169915328-32550166-d1fa-4e85-ac5e-69ef97eb3f90.jpg)
 
 ## Link Slide Presentation
 
