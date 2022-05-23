@@ -56,9 +56,10 @@ Tujuan utama dari pembuatan aplikasi ini adalah untuk membantu pengguna dalam me
 
 2. home<br>
 ![home](https://user-images.githubusercontent.com/74952343/169915132-00a20288-971f-4d03-bbb9-05a3a422c1e6.jpeg)
-![image (7)](https://user-images.githubusercontent.com/74952343/169915173-a9cfde5d-66f9-4009-b425-a4374571af6![drawer](https://user-images.githubusercontent.com/74952343/169915187-6673283e-859b-41ab-bb26-42418c0a2ff4.jpg)
-1.png)
-![image (6)](https://user-images.githubusercontent.com/74952343/169915198-60d9c4e6-7a11-45d4-a171-fb59c0aa4c46.png)
+![image (10)](https://user-images.githubusercontent.com/74952343/169915517-c8c90a41-cd8c-4605-9ed8-ffacba592c40.png)
+![image (11)](https://user-images.githubusercontent.com/74952343/169915533-054cdaa0-9347-42e1-979f-c238ab6b5dcc.png)
+![drawer (2)](https://user-images.githubusercontent.com/74952343/169915543-40c62797-6731-421a-848e-8b04205c8e98.jpg)
+
 
 3. detail project<br>
 ![detail project](https://user-images.githubusercontent.com/74952343/169915225-b95d76c8-27bc-4364-be10-61321f53fbb7.jpg)
