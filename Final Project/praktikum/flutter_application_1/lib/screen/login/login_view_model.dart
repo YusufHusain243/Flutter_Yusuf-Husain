@@ -24,6 +24,7 @@ class LoginViewModel with ChangeNotifier {
         notifyListeners();
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setInt('userId', _user.id);
+        await prefs.setString('name', _user.username);
         await prefs.setBool('cekLogin', true);
         return true;
       } else {

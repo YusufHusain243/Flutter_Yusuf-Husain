@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/model/projects_model.dart';
 import 'package:flutter_application_1/screen/detailProject/detail_project_screen.dart';
@@ -68,7 +69,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Team Work Application'),
+          title: Image.asset(
+            'assets/logo6.png',
+            scale: 2.5,
+            color: Colors.white,
+          ),
           centerTitle: true,
           backgroundColor: const Color(0xff646FD4),
         ),
@@ -154,6 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ListTile(
                         onTap: () {
                           loginData.remove('userId');
+                          loginData.remove('name');
                           loginData.remove('cekLogin');
                           Navigator.of(context).push(
                             PageRouteBuilder(
@@ -179,8 +185,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         },
-                        iconColor: Color.fromARGB(255, 2, 0, 0),
-                        textColor: Color.fromARGB(255, 0, 0, 0),
+                        iconColor: const Color.fromARGB(255, 2, 0, 0),
+                        textColor: const Color.fromARGB(255, 0, 0, 0),
                         leading: const Icon(
                           Icons.logout,
                           size: 27,
@@ -209,7 +215,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 right: 30,
               ),
               width: double.infinity,
-              color: const Color.fromARGB(255, 180, 189, 255),
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 180, 189, 255),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(16.0),
+                  bottomRight: Radius.circular(16.0),
+                ),
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -285,6 +297,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         codeProjectController
                                                             .text
                                                             .toString(),
+                                                    statusProject:
+                                                        "On Progress",
                                                   ),
                                                 );
 
@@ -558,6 +572,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             userId: widget.userId,
                                             nameProject: value
                                                 .projects[index].nameProject,
+                                            statusProject: value
+                                                .projects[index].statusProject,
                                           );
                                         },
                                         transitionsBuilder: (
@@ -585,8 +601,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                       color: Colors.black,
                                     ),
                                   ),
-                                  visualDensity:
-                                      const VisualDensity(vertical: 4),
+                                  trailing: Badge(
+                                    toAnimate: true,
+                                    shape: BadgeShape.square,
+                                    badgeColor: Colors.red,
+                                    borderRadius: BorderRadius.circular(10),
+                                    badgeContent: Text(
+                                      value.projects[index].statusProject,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  visualDensity: const VisualDensity(
+                                    vertical: 4,
+                                  ),
                                 ),
                               ),
                             );

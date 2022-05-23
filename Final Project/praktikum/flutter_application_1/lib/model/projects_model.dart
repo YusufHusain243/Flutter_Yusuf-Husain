@@ -3,12 +3,14 @@ class Project {
   final int userId;
   final String nameProject;
   final String codeProject;
+  final String statusProject;
 
   Project({
     required this.id,
     required this.userId,
     required this.nameProject,
     required this.codeProject,
+    required this.statusProject,
   });
 
   factory Project.fromJson(Map<String, dynamic> json) {
@@ -17,6 +19,7 @@ class Project {
       userId: json['user_id'],
       nameProject: json['name_project'],
       codeProject: json['code_project'],
+      statusProject: json['status_project'],
     );
   }
 

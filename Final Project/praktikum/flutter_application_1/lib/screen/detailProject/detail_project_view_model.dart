@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/model/api/detail_project_api.dart';
 import 'package:flutter_application_1/model/detail_project.dart';
+import 'package:flutter_application_1/model/history.dart';
 import 'package:flutter_application_1/screen/detailProject/detail_project_view_state.dart';
 
 class DetailProjectViewModel with ChangeNotifier {
@@ -9,6 +10,9 @@ class DetailProjectViewModel with ChangeNotifier {
 
   List<DetailProject> _detailProjects = [];
   List<DetailProject> get detailProjects => _detailProjects;
+
+  List<History> _history = [];
+  List<History> get history => _history;
 
   String _status = 'Loading';
   String get status => _status;
@@ -26,6 +30,19 @@ class DetailProjectViewModel with ChangeNotifier {
       notifyListeners();
       ChangeState(DetailProjectViewState.success);
     } catch (e) {
+      ChangeState(DetailProjectViewState.error);
+    }
+  }
+
+  getHistory(int projectId) async {
+    ChangeState(DetailProjectViewState.loading);
+    try {
+      final h = await DetailProjectAPI().getHistory(projectId);
+      _history = h;
+      notifyListeners();
+      ChangeState(DetailProjectViewState.success);
+    } catch (e) {
+      print(e);
       ChangeState(DetailProjectViewState.error);
     }
   }
@@ -57,9 +74,10 @@ class DetailProjectViewModel with ChangeNotifier {
     }
   }
 
-  Future<bool> updateDetailProject(int id, bool status) async {
+  Future<bool> updateDetailProject(int id, String name, bool status) async {
     try {
-      bool result = await DetailProjectAPI().updateDetailProject(id, status);
+      bool result =
+          await DetailProjectAPI().updateDetailProject(id, name, status);
       if (result == true) {
         return true;
       } else {
