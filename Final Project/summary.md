@@ -75,3 +75,4 @@ Tujuan utama dari pembuatan aplikasi ini adalah untuk membantu pengguna dalam me
 https://www.canva.com/design/DAE_WQ0eRHE/T_uJmrHzRQ-bZ-cveOVi6g/view?utm_content=DAE_WQ0eRHE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 ## Link Video Presentation
+https://youtu.be/ZaDtBuFMFCY
