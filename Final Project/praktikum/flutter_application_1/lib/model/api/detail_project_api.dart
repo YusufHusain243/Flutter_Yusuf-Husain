@@ -7,25 +7,20 @@ import 'package:flutter_application_1/model/history.dart';
 class DetailProjectAPI {
   Future<List<DetailProject>> getDetailProject(int id) async {
     final response = await Dio().get(
-      'http://10.0.2.2:8000/api/item-project/index/$id',
+      'https://teamworkapp.xyz/api/item-project/index/$id',
     );
-    // final response = await Dio().get(
-    //   'https://yusuf.bentenserver.my.id/public/api/item-project/index/$id',
-    // );
-
-    // print(response.statusCode);
 
     if (response.statusCode == 200) {
       List<DetailProject> projects = (response.data as List).map((e) {
         var status;
-        if (e['status'] == 1) {
+        if (e['status'] == '1') {
           status = true;
         } else {
           status = false;
         }
         return DetailProject(
           id: e['id'],
-          projectId: e['project_id'],
+          projectId: int.parse(e['project_id']),
           name: e['name'],
           status: status,
         );
@@ -37,23 +32,20 @@ class DetailProjectAPI {
 
   Future<List<History>> getHistory(int projectId) async {
     final response = await Dio().get(
-      'http://10.0.2.2:8000/api/item-project/history/$projectId',
+      'https://teamworkapp.xyz/api/item-project/history/$projectId',
     );
-    // final response = await Dio().get(
-    //   'https://yusuf.bentenserver.my.id/public/api/item-project/index/$id',
-    // );
-
     if (response.statusCode == 200) {
       List<History> history = (response.data as List).map((e) {
         var status;
-        if (e['status'] == 1) {
+        if (e['status'] == '1') {
           status = true;
         } else {
           status = false;
         }
+
         return History(
           id: e['id'],
-          projectId: e['project_id'],
+          projectId: int.parse(e['project_id']),
           name: e['name'],
           status: status,
           createdAt: e['created_at'],
@@ -72,13 +64,9 @@ class DetailProjectAPI {
     });
 
     final response = await Dio().post(
-      'http://10.0.2.2:8000/api/item-project/create',
+      'https://teamworkapp.xyz/api/item-project/create',
       data: dataProject,
     );
-    // final response = await Dio().post(
-    //   'https://yusuf.bentenserver.my.id/public/api/item-project/create',
-    //   data: dataProject,
-    // );
 
     if (response.statusCode == 200) {
       return response.data['status'];
@@ -88,11 +76,8 @@ class DetailProjectAPI {
 
   Future<bool> deleteDetailProject(int id) async {
     final response = await Dio().delete(
-      'http://10.0.2.2:8000/api/item-project/delete/$id',
+      'https://teamworkapp.xyz/api/item-project/delete/$id',
     );
-    // final response = await Dio().delete(
-    //   'https://yusuf.bentenserver.my.id/public/api/item-project/delete/$id',
-    // );
 
     if (response.statusCode == 200) {
       return response.data['status'];
@@ -106,14 +91,11 @@ class DetailProjectAPI {
       'name': name,
       'status': status,
     });
+
     final response = await Dio().patch(
-      'http://10.0.2.2:8000/api/item-project/update',
+      'https://teamworkapp.xyz/api/item-project/update',
       data: updateStatus,
     );
-    // final response = await Dio().patch(
-    //   'https://yusuf.bentenserver.my.id/public/api/item-project/update',
-    //   data: updateStatus,
-    // );
     if (response.statusCode == 200) {
       return response.data['status'];
     }

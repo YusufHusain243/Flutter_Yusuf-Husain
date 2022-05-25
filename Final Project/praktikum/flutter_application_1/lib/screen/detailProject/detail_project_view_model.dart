@@ -52,7 +52,6 @@ class DetailProjectViewModel with ChangeNotifier {
       final p = await ProjectAPI().getProjectById(projectId);
       _projectId = p!;
       notifyListeners();
-      print(_projectId);
       ChangeState(DetailProjectViewState.success);
     } catch (e) {
       ChangeState(DetailProjectViewState.error);
@@ -67,7 +66,6 @@ class DetailProjectViewModel with ChangeNotifier {
       notifyListeners();
       ChangeState(DetailProjectViewState.success);
     } catch (e) {
-      print(e);
       ChangeState(DetailProjectViewState.error);
     }
   }

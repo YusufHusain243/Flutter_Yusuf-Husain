@@ -663,8 +663,8 @@ class _DetailProjectScreenState extends State<DetailProjectScreen> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       var viewModel =
           Provider.of<DetailProjectViewModel>(context, listen: false);
-      await viewModel.getDetailProjects(widget.idProject);
       await viewModel.getProjectById(widget.idProject);
+      await viewModel.getDetailProjects(widget.idProject);
     });
   }
 }

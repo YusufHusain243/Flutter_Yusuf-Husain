@@ -11,13 +11,9 @@ class UserAPI {
       'username': user.username,
     });
     final response = await Dio().post(
-      "http://10.0.2.2:8000/api/users/registration",
+      "https://teamworkapp.xyz/api/users/registration",
       data: dataRegis,
     );
-    // final response = await Dio().post(
-    //   "https://yusuf.bentenserver.my.id/public/api/users/registration",
-    //   data: dataRegis,
-    // );
     if (response.statusCode == 200 && response.data['status'] == 'true') {
       return 'Registration Success';
     } else {
@@ -31,13 +27,9 @@ class UserAPI {
       'password': user.password,
     });
     final response = await Dio().post(
-      "http://10.0.2.2:8000/api/users/login",
+      "https://teamworkapp.xyz/api/users/login",
       data: dataLogin,
     );
-    // final response = await Dio().post(
-    //   "https://yusuf.bentenserver.my.id/public/api/users/login",
-    //   data: dataLogin,
-    // );
 
     if (response.statusCode == 200) {
       return response.data;
@@ -53,13 +45,9 @@ class UserAPI {
     });
 
     final response = await Dio().patch(
-      "http://10.0.2.2:8000/api/users/reset-pass",
+      "https://teamworkapp.xyz/api/users/reset-pass",
       data: resetPassword,
     );
-    // final response = await Dio().patch(
-    //   "https://yusuf.bentenserver.my.id/public/api/users/reset-pass",
-    //   data: resetPassword,
-    // );
 
     if (response.statusCode == 200) {
       return response.data['status'];

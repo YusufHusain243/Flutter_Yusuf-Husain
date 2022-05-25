@@ -6,18 +6,15 @@ import 'package:dio/dio.dart';
 class ProjectAPI {
   Future<List<Project>> getProject(int id) async {
     final response = await Dio().get(
-      'http://10.0.2.2:8000/api/project/index/$id',
+      'https://teamworkapp.xyz/api/project/index/$id',
     );
-    // final response = await Dio().get(
-    //   'https://yusuf.bentenserver.my.id/public/api/project/index/$id',
-    // );
 
     if (response.statusCode == 200) {
       List<Project> projects = (response.data as List)
           .map(
             (e) => Project(
               id: e['id'],
-              userId: e['user_id'],
+              userId: int.parse(e['user_id']),
               nameProject: e['name_project'],
               codeProject: e['code_project'],
               statusProject: e['status_project'],
@@ -32,16 +29,13 @@ class ProjectAPI {
 
   Future<Project?> getProjectById(int projectId) async {
     final response = await Dio().get(
-      'http://10.0.2.2:8000/api/project/byid/$projectId',
+      'https://teamworkapp.xyz/api/project/byid/$projectId',
     );
-    // final response = await Dio().get(
-    //   'https://yusuf.bentenserver.my.id/public/api/project/index/$id',
-    // );
 
     if (response.statusCode == 200) {
       Project project = Project(
         id: response.data[0]['id'],
-        userId: response.data[0]['user_id'],
+        userId: int.parse(response.data[0]['user_id']),
         nameProject: response.data[0]['name_project'],
         codeProject: response.data[0]['code_project'],
         statusProject: response.data[0]['status_project'],
@@ -59,13 +53,9 @@ class ProjectAPI {
       'status_project': project.statusProject,
     });
     final response = await Dio().post(
-      'http://10.0.2.2:8000/api/project/create',
+      'https://teamworkapp.xyz/api/project/create',
       data: dataProject,
     );
-    // final response = await Dio().post(
-    //   'https://yusuf.bentenserver.my.id/public/api/project/create',
-    //   data: dataProject,
-    // );
 
     if (response.statusCode == 200) {
       return response.data['status'];
@@ -75,11 +65,8 @@ class ProjectAPI {
 
   Future<bool> deleteProject(int id) async {
     final response = await Dio().delete(
-      'http://10.0.2.2:8000/api/project/delete/$id',
+      'https://teamworkapp.xyz/api/project/delete/$id',
     );
-    // final response = await Dio().delete(
-    //   'https://yusuf.bentenserver.my.id/public/api/project/delete/$id',
-    // );
 
     if (response.statusCode == 200) {
       return response.data['status'];
@@ -94,13 +81,9 @@ class ProjectAPI {
     });
 
     final response = await Dio().post(
-      'http://10.0.2.2:8000/api/project/join',
+      'https://teamworkapp.xyz/api/project/join',
       data: dataProject,
     );
-    // final response = await Dio().post(
-    //   'https://yusuf.bentenserver.my.id/public/api/project/join',
-    //   data: dataProject,
-    // );
 
     if (response.statusCode == 200) {
       return response.data['status'];
@@ -115,15 +98,9 @@ class ProjectAPI {
     });
 
     final response = await Dio().patch(
-      'http://10.0.2.2:8000/api/project/update',
+      'https://teamworkapp.xyz/api/project/update',
       data: dataProject,
     );
-
-    print(response.statusCode);
-    // final response = await Dio().post(
-    //   'https://yusuf.bentenserver.my.id/public/api/project/join',
-    //   data: dataProject,
-    // );
 
     if (response.statusCode == 200) {
       return response.data['status'];
