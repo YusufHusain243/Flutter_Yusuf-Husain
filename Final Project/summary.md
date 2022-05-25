@@ -76,3 +76,6 @@ https://www.canva.com/design/DAE_WQ0eRHE/T_uJmrHzRQ-bZ-cveOVi6g/view?utm_content
 
 ## Link Video Presentation
 https://youtu.be/ZaDtBuFMFCY
+
+## Aplikasi
+https://github.com/YusufHusain243/Flutter_Yusuf-Husain/blob/main/Final%20Project/screenshots/app-release.apk
